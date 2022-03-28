@@ -1,14 +1,14 @@
 // Import Library
-const { json } = require("express");
 const firebase = require("firebase-admin");
 const serviceAccount = require("./../certificate/private-key.json");
-const UserModel = require("./../model/user");
 
 // Initialize Firebase Credentials
-firebase.initializeApp({
-    credential: firebase.credential.cert(serviceAccount),
-    databaseURL: "https://blooddonationmad-default-rtdb.asia-southeast1.firebasedatabase.app/"
-});
+if (!firebase.app.length) {
+    firebase.initializeApp({
+        credential: firebase.credential.cert(serviceAccount),
+        databaseURL: "https://blooddonationmad-default-rtdb.asia-southeast1.firebasedatabase.app/"
+    });
+}
 
 // Get List of User
 async function getAllUser(req, res) {
@@ -26,25 +26,23 @@ async function getAllUser(req, res) {
 
 // Get User
 async function getUser(req, res) {
-    let id = req.query.id,
-        userDict = {};
+    let id = req.query.id;
 
-    let userRef = firebase.database().ref().child("users/");
-    let snap = await userRef.once("value");
-    snap.forEach(val => {
-        let tmp_user = val.val();
-        userDict[tmp_user.id] = tmp_user;
-    });
+    let userRef = firebase.database().ref().child(`users/${id}`);
+
+    let user = await userRef.once("value");
+    user = user.val();
+
+    console.log(user);
 
     console.log("Retrieved User Data Successfully!");
-    return res.status(200).json({ data: userDict[id] });
+    return res.status(200).json({ data: user });
 }
 
 // Add User
 async function addUser(req, res) {
 
-    let userRef = firebase.database().ref().child("users/");
-    userRef = userRef.push();
+    let userRef = firebase.database().ref().child("users/").push();
 
     let _id = userRef.key,
         _email = req.body.email,
@@ -65,14 +63,12 @@ async function addUser(req, res) {
 // Update User
 async function updateUser(req, res) {
 
-    let userRef = firebase.database().ref().child("users/");
-
     let _id = req.body.id,
         _email = req.body.email,
         _name = req.body.name,
         _password = req.body.password;
 
-    userRef = userRef.child(_id);
+    let userRef = firebase.database().ref().child(`users/${_id}`);
 
     await userRef.set({
         id: _id,
@@ -87,14 +83,17 @@ async function updateUser(req, res) {
 
 // Delete User
 async function deleteUser(req, res) {
-    let userRef = firebase.database().ref().child("users/");
-
     let _id = req.body.id;
 
-    userRef = userRef.child(_id).remove();
+    let userRef = firebase.database().ref().child(`users/${_id}`);
 
-    console.log(`User has been deleted successfully!`);
-    return res.status(200).json({ data: `User has been removed successfully!` });
+    let user = await userRef.once("value");
+    user = user.val();
+
+    userRef = userRef.remove();
+
+    console.log(`User ${user.email} has been deleted successfully!`);
+    return res.status(200).json({ data: `User ${user.email} has been removed successfully!` });
 }
 
 // Delete All User
