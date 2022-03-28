@@ -2,9 +2,14 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 
-// Get Request
-router.get('/', (req, res) => {
-    res.sendFile(`${__dirname}/public/index.html`);
-});
+// Import Controller
+const userController = require("./../controller/userController");
+
+router.get('/getAllUser', userController.getAllUser);
+router.get('/getUser', userController.getUser);
+router.post('/addUser', userController.addUser);
+router.post('/updateUser', userController.updateUser);
+router.post('/deleteUser', userController.deleteUser);
+router.post('/deleteAllUser', userController.deleteAllUser);
 
 module.exports = router;

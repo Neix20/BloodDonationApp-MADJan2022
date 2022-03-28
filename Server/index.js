@@ -2,13 +2,12 @@ const express = require('express');
 const path = require("path");
 const app = express();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 6660;
 
-// Static Assests
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Form Submission
 // Handle Form Data
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Get Request
