@@ -3,12 +3,10 @@ const firebase = require("firebase-admin");
 const serviceAccount = require("./../certificate/private-key.json");
 
 // Initialize Firebase Credentials
-if (!firebase.app.length) {
-    firebase.initializeApp({
-        credential: firebase.credential.cert(serviceAccount),
-        databaseURL: "https://blooddonationmad-default-rtdb.asia-southeast1.firebasedatabase.app/"
-    });
-}
+firebase.initializeApp({
+    credential: firebase.credential.cert(serviceAccount),
+    databaseURL: "https://blooddonationmad-b0e0e-default-rtdb.asia-southeast1.firebasedatabase.app/"
+});
 
 // Get List of User
 async function getAllUser(req, res) {
@@ -48,6 +46,8 @@ async function addUser(req, res) {
         _email = req.body.email,
         _name = req.body.name,
         _password = req.body.password;
+
+    console.log(_email, _name, _password);
 
     await userRef.set({
         id: _id,

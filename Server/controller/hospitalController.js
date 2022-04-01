@@ -6,6 +6,6 @@ const serviceAccount = require("./../certificate/private-key.json");
 if (!firebase.app.length) {
     firebase.initializeApp({
         credential: firebase.credential.cert(serviceAccount),
-        databaseURL: "https://blooddonationmad-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        databaseURL: "https://blooddonationmad-b0e0e-default-rtdb.asia-southeast1.firebasedatabase.app/"
     });
 }
