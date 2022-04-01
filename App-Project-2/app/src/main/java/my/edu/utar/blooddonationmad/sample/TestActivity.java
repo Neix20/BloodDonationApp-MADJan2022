@@ -7,6 +7,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -28,11 +31,12 @@ public class TestActivity extends AppCompatActivity {
 
     private ActivityTestBinding binding;
 
-    private ListView userListView;
-
     private FloatingActionButton fab;
 
     private DatabaseReference dbRef;
+
+    private RecyclerView mRecyclerView;
+    private UserViewAdapter userViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,28 +47,24 @@ public class TestActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // Bind Java Object to XML Element
-        userListView = binding.userListView;
+        mRecyclerView = binding.recView;
         fab = binding.fab;
 
         // Initialize Database Reference
         dbRef = FirebaseDatabase.getInstance().getReference();
+        userViewAdapter = new UserViewAdapter(this);
 
-        // List of user
-        List<String> userStrList = new ArrayList<String>();
+        mRecyclerView.setAdapter(userViewAdapter);
 
-        // Replace with Get All Data From Firebase
-//        List<User> userList = new ArrayList<User>(Arrays.asList(
-//                new User("1", "txen2000@gmail.com", "abc123", "user"),
-//                new User("2", "txen2000@gmail.com", "abc123", "user"),
-//                new User("3", "txen2000@gmail.com", "abc123", "admin"),
-//                new User("4", "txen2000@gmail.com", "abc123", "admin")
-//        ));
-//
-//        for(User user : userList){
-//            userStrList.add(user.toString());
-//        }
+        // Give the RecyclerView a default layout manager.
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
 
         Log.i(TAG, "Fuck you");
+
+        List<User> tmpUserList = new ArrayList<>();
 
         // Attach a listener to read the data at our posts reference
         // AJAX
@@ -72,9 +72,12 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
-                    User tmp = userSnapshot.getValue(User.class);
-                    userStrList.add(tmp.toString());
+                    User tmpUser = userSnapshot.getValue(User.class);
+                    Log.i(TAG, tmpUser.toString());
+                    tmpUserList.add(tmpUser);
                 }
+                Log.i(TAG, String.format("Size: %d", tmpUserList.size()));
+                userViewAdapter.updateList(tmpUserList);
             }
 
             @Override
@@ -82,10 +85,6 @@ public class TestActivity extends AppCompatActivity {
                 Log.e(TAG, "The read failed: " + databaseError.getCode());
             }
         });
-
-//        ArrayAdapter<String> userAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, userStrList);
-//
-//        userListView.setAdapter(userAdapter);
 
         fab.setOnClickListener(view -> nAddPwd());
     }

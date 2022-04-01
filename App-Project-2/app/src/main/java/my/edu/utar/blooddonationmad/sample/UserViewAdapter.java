@@ -106,7 +106,6 @@ public class UserViewAdapter extends RecyclerView.Adapter<UserViewAdapter.UserVi
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
             int pos = getAdapterPosition();
             User elem = mUserList.get(pos);
-            Toast.makeText(view.getContext(), pos + "", Toast.LENGTH_SHORT);
             MenuItem delete = contextMenu.add(Menu.NONE, 1, pos, "Delete"); // groupId, itemId, order, title
         }
     }
