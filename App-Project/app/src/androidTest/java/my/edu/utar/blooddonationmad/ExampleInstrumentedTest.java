@@ -1,4 +1,4 @@
-package my.edu.utar.blooddonationapp;
+package my.edu.utar.blooddonationmad;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("my.edu.utar.blooddonationapp", appContext.getPackageName());
+        assertEquals("my.edu.utar.blooddonationmad", appContext.getPackageName());
     }
 }

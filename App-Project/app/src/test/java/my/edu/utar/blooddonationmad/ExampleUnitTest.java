@@ -1,4 +1,4 @@
-package my.edu.utar.blooddonationapp;
+package my.edu.utar.blooddonationmad;
 
 import org.junit.Test;
 
