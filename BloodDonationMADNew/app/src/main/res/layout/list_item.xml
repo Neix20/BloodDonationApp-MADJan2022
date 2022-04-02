@@ -2,7 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/id_txtView"
@@ -10,7 +13,8 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:text="ID: "
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/email_txtView"
@@ -18,7 +22,8 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:text="Email: "
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/pwd_txtView"
@@ -26,7 +31,8 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:text="Password: "
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/type_txtView"
@@ -34,6 +40,7 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:text="Type: "
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:textColor="@color/black" />
 
 </LinearLayout>

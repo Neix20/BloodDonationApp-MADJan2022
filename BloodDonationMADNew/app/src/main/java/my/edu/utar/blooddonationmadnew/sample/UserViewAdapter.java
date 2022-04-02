@@ -2,6 +2,7 @@ package my.edu.utar.blooddonationmadnew.sample;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,56 +16,46 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import my.edu.utar.blooddonationmadnew.R;
 
-public class UserViewAdapter extends RecyclerView.Adapter<UserViewAdapter.UserViewHolder>{
+public class UserViewAdapter extends FirebaseRecyclerAdapter<User, UserViewAdapter.UserViewHolder> {
 
-    public final static String TAG = UserViewAdapter.class.toString();
+    private DatabaseReference dbRef;
+    private final String TABLE_NAME = "users";
 
-    private List<User> mUserList;
-    private LayoutInflater mInflater;
+    public final static String TAG = UserViewAdapter.class.getSimpleName();
 
-    public UserViewAdapter(Context mContext){
-        this.mUserList = new ArrayList<User>();
-        this.mInflater = LayoutInflater.from(mContext);
+    public UserViewAdapter(@NonNull FirebaseRecyclerOptions<User> options) {
+        super(options);
+        dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
     }
 
     @NonNull
     @Override
     public UserViewAdapter.UserViewHolder onCreateViewHolder(ViewGroup parent, int pos){
-        View mItemView = mInflater.inflate(R.layout.list_item, parent, false);
+        View mItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         return new UserViewHolder(mItemView, this);
     }
 
     @Override
-    public void onBindViewHolder(UserViewAdapter.UserViewHolder viewHolder, int pos){
-        User elem = mUserList.get(pos);
-
+    protected void onBindViewHolder(@NonNull UserViewHolder viewHolder, int position, @NonNull User elem) {
         // Bind User Element to List Item
         viewHolder.id_txtView.setText(elem.getId());
         viewHolder.email_txtView.setText(elem.getEmail());
         viewHolder.pwd_txtView.setText(elem.getPassword());
         viewHolder.type_txtView.setText(elem.getType());
     }
-
-    @Override
-    public int getItemCount() {
-        return mUserList.size();
-    }
-
-    public void updateList(List<User> userList) {
-        UserDiffCallback diffCallback = new UserDiffCallback(this.mUserList, userList);
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
-
-        this.mUserList.clear();
-        this.mUserList.addAll(userList);
-
-        diffResult.dispatchUpdatesTo(this);
-    }
-
 
     class UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener{
         TextView id_txtView;
@@ -92,20 +83,34 @@ public class UserViewAdapter extends RecyclerView.Adapter<UserViewAdapter.UserVi
             // Get the position of the item that was clicked.
             int pos = getLayoutPosition();
 
-            User elem = mUserList.get(pos);
+            // Edit Item
+            dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    int ind = 0;
 
-            Toast.makeText(view.getContext(), elem.toString(), Toast.LENGTH_LONG).show();
+                    for(DataSnapshot userSnapshot : snapshot.getChildren()){
+                        if(ind == pos){
+                            User tmpUser = userSnapshot.getValue(User.class);
+                            Intent intent = new Intent(view.getContext(), TestEditActivity.class);
+                            intent.putExtra("id", tmpUser.getId());
+                            view.getContext().startActivity(intent);
+                        }
+                        ind++;
+                    }
+                }
 
-            // Spawn Edit page Activity
-//            Intent intent = new Intent(view.getContext(), EditPwdActivity.class);
-//            intent.putExtra("id", pwd.getId());
-//            view.getContext().startActivity(intent);
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e(TAG, "The read failed: " + error.getCode());
+                }
+            });
         }
 
 
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
             int pos = getAdapterPosition();
-            User elem = mUserList.get(pos);
+
             MenuItem delete = contextMenu.add(Menu.NONE, 1, pos, "Delete"); // groupId, itemId, order, title
         }
     }

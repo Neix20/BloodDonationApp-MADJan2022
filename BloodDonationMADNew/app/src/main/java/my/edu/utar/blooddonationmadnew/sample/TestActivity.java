@@ -1,18 +1,22 @@
 package my.edu.utar.blooddonationmadnew.sample;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,12 +27,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import my.edu.utar.blooddonationmadnew.databinding.ActivityTestBinding;
 
 public class TestActivity extends AppCompatActivity {
 
-    public final static String TAG = TestActivity.class.toString();
+    public final static String TAG = TestActivity.class.getSimpleName();
     private final String TABLE_NAME = "users";
 
     private ActivityTestBinding binding;
@@ -53,8 +58,11 @@ public class TestActivity extends AppCompatActivity {
         fab = binding.fab;
 
         // Initialize Database Reference
-        dbRef = FirebaseDatabase.getInstance().getReference();
-        userViewAdapter = new UserViewAdapter(this);
+        dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
+
+        FirebaseRecyclerOptions<User> options = new FirebaseRecyclerOptions.Builder<User>().setQuery(dbRef, User.class).build();
+
+        userViewAdapter = new UserViewAdapter(options);
 
         mRecyclerView.setAdapter(userViewAdapter);
 
@@ -63,30 +71,6 @@ public class TestActivity extends AppCompatActivity {
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(dividerItemDecoration);
-
-        Log.i(TAG, "Fuck you");
-
-        List<User> tmpUserList = new ArrayList<>();
-
-        // Attach a listener to read the data at our posts reference
-        // AJAX
-        dbRef.child(TABLE_NAME).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
-                    User tmpUser = userSnapshot.getValue(User.class);
-                    Log.i(TAG, tmpUser.toString());
-                    tmpUserList.add(tmpUser);
-                }
-                Log.i(TAG, String.format("Size: %d", tmpUserList.size()));
-                userViewAdapter.updateList(tmpUserList);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.e(TAG, "The read failed: " + databaseError.getCode());
-            }
-        });
 
         fab.setOnClickListener(view -> nAddPwd());
     }
@@ -100,31 +84,40 @@ public class TestActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         int pos = item.getOrder();
 
-        // Alert Dialog
-        new AlertDialog.Builder(this.getContext())
-                .setMessage("Are you sure you want to delete?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", (dialog, id) -> {
-                    User elem = null;
-                    try {
-                        pwd = viewModel.getPassword((long) pos);
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int ind = 0;
+
+                for(DataSnapshot userSnapshot : snapshot.getChildren()){
+                    if(ind == pos){
+                        User tmpUser = userSnapshot.getValue(User.class);
+                        dbRef.child(tmpUser.getId()).removeValue();
+
+                        Toast.makeText(getApplicationContext(), String.format("User %s was successfully removed!", tmpUser.getEmail()), Toast.LENGTH_SHORT).show();
                     }
+                    ind++;
+                }
+            }
 
-                    viewModel.deletePassword(pwd);
-
-                    viewModel.getPwdList().observe(this, pwdList -> {
-                        mAdapter.updateList(pwdList);
-                    });
-                })
-                .setNegativeButton("No", (dialog, id) -> dialog.cancel())
-                .show();
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e(TAG, "The read failed: " + error.getCode());
+            }
+        });
 
         return super.onContextItemSelected(item);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        userViewAdapter.startListening();
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        userViewAdapter.stopListening();
+    }
 }

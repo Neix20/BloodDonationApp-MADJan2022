@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/activity_add_test.xml" value="0.1" />
+        <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/activity_edit_test.xml" value="0.25416666666666665" />
+        <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/fragment_admin_blood_event.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/fragment_admin_dashboard.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/fragment_admin_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/list_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/menu/menu_bottom_nav.xml" value="0.25416666666666665" />
       </map>
     </option>

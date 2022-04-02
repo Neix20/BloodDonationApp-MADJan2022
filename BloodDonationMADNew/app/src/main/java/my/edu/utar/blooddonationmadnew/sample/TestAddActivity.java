@@ -15,9 +15,11 @@ import my.edu.utar.blooddonationmadnew.databinding.ActivityTestBinding;
 
 public class TestAddActivity extends AppCompatActivity {
 
-    public final static String TAG = TestAddActivity.class.toString();
+    private DatabaseReference dbRef;
 
     private final String TABLE_NAME = "users";
+
+    public final static String TAG = TestAddActivity.class.getSimpleName();
 
     private ActivityAddTestBinding binding;
 
@@ -26,7 +28,6 @@ public class TestAddActivity extends AppCompatActivity {
 
     private Button submit_btn;
 
-    private DatabaseReference dbRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class TestAddActivity extends AppCompatActivity {
         submit_btn = binding.submitBtn;
 
         // Initialize Java Objects
-        dbRef = FirebaseDatabase.getInstance().getReference();
+        dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
 
         // Add Back Button at ActionBar
         if (getSupportActionBar() != null) {
@@ -59,12 +60,14 @@ public class TestAddActivity extends AppCompatActivity {
         String password = pwd_txt.getText().toString();
 
         // Push New Id, Allocate space for new User
-        dbRef = dbRef.child(TABLE_NAME).push();
-        String id = dbRef.getKey();
-
-        User tmpUser = new User(id, email, password, "User");
+        User tmpUser = new User("", email, password, "User");
 
         // Add To Firebase
+        dbRef = dbRef.push();
+
+        String id = dbRef.getKey();
+        tmpUser.setId(id);
+
         dbRef.setValue(tmpUser);
 
         Toast.makeText(this, String.format("User %s was successfully inserted!", email), Toast.LENGTH_SHORT).show();

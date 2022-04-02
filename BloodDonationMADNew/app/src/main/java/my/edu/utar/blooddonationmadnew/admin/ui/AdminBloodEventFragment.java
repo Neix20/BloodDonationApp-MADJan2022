@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminBloodEventBinding;
-import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminDashboardBinding;
 
 public class AdminBloodEventFragment extends Fragment {
 

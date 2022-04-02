@@ -53,7 +53,7 @@ async function addUser(req, res) {
         id: _id,
         email: _email,
         password: _password,
-        name: _name
+        type: _name
     });
 
     console.log(`User ${_email} has been added successfully!`);
