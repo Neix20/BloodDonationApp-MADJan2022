@@ -3,9 +3,11 @@ package my.edu.utar.blooddonationmad.sample;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -92,6 +94,36 @@ public class TestActivity extends AppCompatActivity {
     public void nAddPwd(){
         Intent intent = new Intent(this, TestAddActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int pos = item.getOrder();
+
+        // Alert Dialog
+        new AlertDialog.Builder(this.getContext())
+                .setMessage("Are you sure you want to delete?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", (dialog, id) -> {
+                    User elem = null;
+                    try {
+                        pwd = viewModel.getPassword((long) pos);
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    viewModel.deletePassword(pwd);
+
+                    viewModel.getPwdList().observe(this, pwdList -> {
+                        mAdapter.updateList(pwdList);
+                    });
+                })
+                .setNegativeButton("No", (dialog, id) -> dialog.cancel())
+                .show();
+
+        return super.onContextItemSelected(item);
     }
 
 
