@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">BloodDonationMAD</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_blood_event">Blood Event</string>
-    <string name="title_profile">Profile</string>
-</resources>
