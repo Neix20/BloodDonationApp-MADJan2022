@@ -11,14 +11,14 @@ import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import my.edu.utar.blooddonationmadnew.R;
-import my.edu.utar.blooddonationmadnew.databinding.ActivityMainBinding;
+import my.edu.utar.blooddonationmadnew.databinding.ActivityAdminMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class AdminMainActivity extends AppCompatActivity {
 
-    public static final String TAG = MainActivity.class.toString();
+    public static final String TAG = AdminMainActivity.class.toString();
 
     private AppBarConfiguration mAppBarConfiguration;
-    private ActivityMainBinding binding;
+    private ActivityAdminMainBinding binding;
 
     private BottomNavigationView bottomNavigationView;
 
@@ -26,14 +26,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityAdminMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // Bind Java Object to XML Element
         bottomNavigationView = binding.bottomNavView;
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_admin_dashboard, R.id.nav_admin_blood_event, R.id.nav_admin_profile
+                R.id.nav_admin_dashboard, R.id.nav_admin_blood_event, R.id.nav_admin_user_list, R.id.nav_admin_profile
         ).build();
 
         NavController navController = Navigation.findNavController(this, R.id.navHostFragment);

@@ -11,17 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BloodDonationMADNew">
-        <!--        <activity-->
-        <!--            android:name=".admin.ui.MainActivity"-->
-        <!--            android:exported="true">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="android.intent.action.MAIN" />-->
 
-        <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-        <!--            </intent-filter>-->
-        <!--        </activity>-->
         <activity
-            android:name=".sample.TestActivity"
+            android:name=".admin.ui.AdminMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,8 +21,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".sample.TestAddActivity" android:exported="false" />
-        <activity android:name=".sample.TestEditActivity" android:exported="false" />
+
+        <activity
+            android:name=".admin.ui.AdminAddBloodEventActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".sample.TestActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".sample.TestAddActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".sample.TestEditActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

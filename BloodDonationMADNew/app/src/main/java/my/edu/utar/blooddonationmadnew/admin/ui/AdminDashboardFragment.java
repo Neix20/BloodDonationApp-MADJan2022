@@ -13,7 +13,7 @@ import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminDashboardBinding
 
 public class AdminDashboardFragment extends Fragment {
 
-    public final static String TAG = AdminDashboardFragment.class.toString();
+    public final static String TAG = AdminDashboardFragment.class.getSimpleName();
 
     private FragmentAdminDashboardBinding binding;
 

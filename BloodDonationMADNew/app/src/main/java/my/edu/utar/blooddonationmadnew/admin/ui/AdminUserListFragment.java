@@ -9,19 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminProfileBinding;
+import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminUserListBinding;
 
-public class AdminProfileFragment extends Fragment {
+public class AdminUserListFragment extends Fragment {
 
-    public final static String TAG = AdminProfileFragment.class.getSimpleName();
+    private final String TAG = AdminUserListFragment.class.getSimpleName();
 
-    private FragmentAdminProfileBinding binding;
+    private FragmentAdminUserListBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentAdminProfileBinding.inflate(inflater, container, false);
+        binding = FragmentAdminUserListBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;
     }
-
 }

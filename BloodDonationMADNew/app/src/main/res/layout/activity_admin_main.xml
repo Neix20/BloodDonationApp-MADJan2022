@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.ui.MainActivity">
+    tools:context=".admin.ui.AdminMainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav_view"
@@ -22,6 +22,6 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@id/bottomNav_view"
-        app:navGraph="@navigation/nav_bottom_graph" />
+        app:navGraph="@navigation/nav_admin_bottom_graph" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

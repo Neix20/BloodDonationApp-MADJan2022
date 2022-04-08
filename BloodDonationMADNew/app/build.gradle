@@ -51,8 +51,11 @@ dependencies {
     // Dependency FirebaseUI for Firebase Realtime Database
     implementation 'com.firebaseui:firebase-ui-database:6.2.1'
 
-    // Dependency for Firebase REaltime Database
+    // Dependency for Firebase Realtime Database
     implementation 'com.google.firebase:firebase-database:19.3.1'
+
+    // Dependency for Firebase Cloud Messaging
+    implementation 'com.google.firebase:firebase-messaging:20.0.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
