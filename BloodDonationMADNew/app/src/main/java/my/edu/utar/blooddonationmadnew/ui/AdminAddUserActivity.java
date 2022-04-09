@@ -11,7 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-import my.edu.utar.blooddonationmadnew.admin.data.User;
+import my.edu.utar.blooddonationmadnew.data.User;
 import my.edu.utar.blooddonationmadnew.databinding.ActivityAdminAddUserListBinding;
 
 
@@ -103,6 +103,7 @@ public class AdminAddUserActivity extends AppCompatActivity {
         String country = country_txt.getText().toString();
 
         User user = new User("", email,pwd, userType,name,age,height,weight,bloodType,phoneNumber,addr1,addr2,postCode,city,state,country);
+        user.setState_bloodType(String.format("%s_%s", state, bloodType));
 
         // Add to Firebase
         dbRef = dbRef.push();

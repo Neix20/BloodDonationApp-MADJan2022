@@ -17,7 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import my.edu.utar.blooddonationmadnew.R;
-import my.edu.utar.blooddonationmadnew.admin.data.User;
+import my.edu.utar.blooddonationmadnew.data.User;
 
 public class UserViewAdapter extends FirebaseRecyclerAdapter<User, UserViewAdapter.UserViewHolder> {
 

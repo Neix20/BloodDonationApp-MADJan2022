@@ -1,4 +1,4 @@
-package my.edu.utar.blooddonationmadnew.admin.data;
+package my.edu.utar.blooddonationmadnew.data;
 
 import java.util.Objects;
 
@@ -20,6 +20,7 @@ public class User {
     private String city;
     private String state;
     private String country;
+    private String state_bloodType;
 
     public User(String id, String email, String password, String userType,
                 String name, int age, double height, double weight, String bloodType, String phoneNumber,
@@ -174,4 +175,11 @@ public class User {
         this.country = country;
     }
 
+    public String getState_bloodType() {
+        return state_bloodType;
+    }
+
+    public void setState_bloodType(String state_bloodType) {
+        this.state_bloodType = state_bloodType;
+    }
 }

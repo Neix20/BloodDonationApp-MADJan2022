@@ -23,24 +23,24 @@ import com.google.firebase.database.ValueEventListener;
 
 import my.edu.utar.blooddonationmadnew.R;
 
-import my.edu.utar.blooddonationmadnew.admin.data.User;
+import my.edu.utar.blooddonationmadnew.data.User;
 import my.edu.utar.blooddonationmadnew.sample.TestEditActivity;
 
-public class AdminUserListAdapter extends FirebaseRecyclerAdapter<User, AdminUserListAdapter.UserViewHolder> {
+public class UserViewAdapter extends FirebaseRecyclerAdapter<User, UserViewAdapter.UserViewHolder> {
 
     private DatabaseReference dbRef;
     private final String TABLE_NAME = "users";
 
     public final static String TAG = BloodEventViewAdapter.class.getSimpleName();
 
-    public AdminUserListAdapter(@NonNull FirebaseRecyclerOptions<User> options) {
+    public UserViewAdapter(@NonNull FirebaseRecyclerOptions<User> options) {
         super(options);
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
     }
 
     @Override
     protected void onBindViewHolder(@NonNull UserViewHolder holder, int position, @NonNull User model) {
-        holder.name_txtView.setText(model.getEmail());
+        holder.name_txtView.setText(model.getName());
         holder.bloodType_TxtView.setText(model.getBloodType());
         holder.phoneNo_TxtView.setText(model.getPhoneNumber());
     }
@@ -48,9 +48,9 @@ public class AdminUserListAdapter extends FirebaseRecyclerAdapter<User, AdminUse
 
     @NonNull
     @Override
-    public AdminUserListAdapter.UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public UserViewAdapter.UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View mItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_user_list_item, parent, false);
-        return new AdminUserListAdapter.UserViewHolder(mItemView, this);
+        return new UserViewAdapter.UserViewHolder(mItemView, this);
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener{
@@ -58,9 +58,9 @@ public class AdminUserListAdapter extends FirebaseRecyclerAdapter<User, AdminUse
         TextView bloodType_TxtView;
         TextView phoneNo_TxtView;
 
-        AdminUserListAdapter mAdapter;
+        UserViewAdapter mAdapter;
 
-        public UserViewHolder(@NonNull View itemView, AdminUserListAdapter mAdapter) {
+        public UserViewHolder(@NonNull View itemView, UserViewAdapter mAdapter) {
             super(itemView);
 
             // Bind Java Object to XML Element

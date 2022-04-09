@@ -1,5 +1,6 @@
 package my.edu.utar.blooddonationmadnew.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +66,10 @@ public class UserUserListFragment extends Fragment {
         Toast.makeText(this.getContext(), state + " " + blood_type, Toast.LENGTH_SHORT).show();
 
         // Fire base logic
+        Intent intent = new Intent(this.getContext(), UserSearchResultActivity.class);
+        intent.putExtra("state", state);
+        intent.putExtra("blood_type", blood_type);
+        startActivity(intent);
 
     }
 }

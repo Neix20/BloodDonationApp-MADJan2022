@@ -20,7 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import my.edu.utar.blooddonationmadnew.admin.data.User;
+import my.edu.utar.blooddonationmadnew.data.User;
 import my.edu.utar.blooddonationmadnew.databinding.ActivityTestBinding;
 
 public class TestActivity extends AppCompatActivity {
