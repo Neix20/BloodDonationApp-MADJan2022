@@ -15,7 +15,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import my.edu.utar.blooddonationmadnew.R;
+<<<<<<< Updated upstream:BloodDonationMADNew/app/src/main/java/my/edu/utar/blooddonationmadnew/adapter/BloodEventViewAdapter.java
 import my.edu.utar.blooddonationmadnew.data.BloodEvent;
+=======
+import my.edu.utar.blooddonationmadnew.admin.data.BloodEvent;
+>>>>>>> Stashed changes:BloodDonationMADNew/app/src/main/java/my/edu/utar/blooddonationmadnew/admin/adapter/BloodEventViewAdapter.java
 
 public class BloodEventViewAdapter extends FirebaseRecyclerAdapter<BloodEvent, BloodEventViewAdapter.BloodEventViewHolder> {
 

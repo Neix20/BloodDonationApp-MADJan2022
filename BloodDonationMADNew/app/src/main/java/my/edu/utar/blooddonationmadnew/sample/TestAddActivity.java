@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import my.edu.utar.blooddonationmadnew.admin.data.User;
 import my.edu.utar.blooddonationmadnew.databinding.ActivityAddTestBinding;
-import my.edu.utar.blooddonationmadnew.databinding.ActivityTestBinding;
 
 public class TestAddActivity extends AppCompatActivity {
 

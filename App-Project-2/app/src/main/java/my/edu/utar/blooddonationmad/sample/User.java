@@ -1,4 +1,4 @@
-package my.edu.utar.blooddonationmadnew.sample;
+package my.edu.utar.blooddonationmad.sample;
 
 import java.util.Objects;
 

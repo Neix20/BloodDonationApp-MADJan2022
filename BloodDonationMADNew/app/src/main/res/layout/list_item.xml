@@ -17,7 +17,7 @@
         android:textColor="@color/black" />
 
     <TextView
-        android:id="@+id/email_txtView"
+        android:id="@+id/name_txtView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
@@ -35,7 +35,7 @@
         android:textColor="@color/black" />
 
     <TextView
-        android:id="@+id/type_txtView"
+        android:id="@+id/phoneNo_txtView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"

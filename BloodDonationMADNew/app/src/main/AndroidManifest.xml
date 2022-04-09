@@ -33,7 +33,8 @@
 
         <activity
             android:name=".sample.TestActivity"
-            android:exported="false" />
+        android:exported="false" />
+
 
         <activity
             android:name=".sample.TestAddActivity"

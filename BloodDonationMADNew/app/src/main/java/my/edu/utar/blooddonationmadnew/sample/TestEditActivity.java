@@ -3,7 +3,6 @@ package my.edu.utar.blooddonationmadnew.sample;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import my.edu.utar.blooddonationmadnew.admin.data.User;
 import my.edu.utar.blooddonationmadnew.databinding.ActivityEditTestBinding;
 
 public class TestEditActivity extends AppCompatActivity {
