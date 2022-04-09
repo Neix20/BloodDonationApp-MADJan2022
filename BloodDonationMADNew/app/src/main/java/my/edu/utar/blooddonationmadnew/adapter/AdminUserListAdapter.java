@@ -1,4 +1,4 @@
-package my.edu.utar.blooddonationmadnew.admin.adapter;
+package my.edu.utar.blooddonationmadnew.adapter;
 
 import android.content.Intent;
 import android.util.Log;

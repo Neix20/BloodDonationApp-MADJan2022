@@ -60,7 +60,7 @@ public class TestAddActivity extends AppCompatActivity {
         String password = pwd_txt.getText().toString();
 
         // Push New Id, Allocate space for new User
-        User tmpUser = new User("", email, password, "User");
+        User tmpUser = new User();
 
         // Add To Firebase
         dbRef = dbRef.push();

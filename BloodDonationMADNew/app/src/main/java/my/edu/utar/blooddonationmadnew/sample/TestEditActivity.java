@@ -82,7 +82,7 @@ public class TestEditActivity extends AppCompatActivity {
         String email = email_txt.getText().toString();
         String password = pwd_txt.getText().toString();
 
-        User tmpUser = new User(id, email, password, "User");
+        User tmpUser = new User();
 
         dbRef.child(id).setValue(tmpUser);
 

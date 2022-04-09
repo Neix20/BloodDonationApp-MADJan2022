@@ -1,4 +1,4 @@
-package my.edu.utar.blooddonationmadnew.admin.ui;
+package my.edu.utar.blooddonationmadnew.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -84,7 +84,7 @@ public class AdminEditUserActivity extends AppCompatActivity {
         String email = email_txt.getText().toString();
         String password = pwd_txt.getText().toString();
 
-        User tmpUser = new User(id, email, password, "User");
+        User tmpUser = new User();
 
         dbRef.child(id).setValue(tmpUser);
 

@@ -26,7 +26,13 @@
         android:padding="10dp"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/title_item_txtView"
+            android:id="@+id/id_txtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/title_txtView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -34,7 +40,7 @@
             android:textSize="25dp"
             android:textStyle="bold" />
         <TextView
-            android:id="@+id/address_item_txtView"
+            android:id="@+id/address_txtView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"

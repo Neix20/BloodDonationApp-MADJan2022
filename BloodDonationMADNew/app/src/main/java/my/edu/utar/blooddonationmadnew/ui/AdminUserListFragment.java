@@ -19,9 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import my.edu.utar.blooddonationmadnew.admin.adapter.AdminUserListAdapter;
-import my.edu.utar.blooddonationmadnew.admin.adapter.BloodEventViewAdapter;
-import my.edu.utar.blooddonationmadnew.admin.data.BloodEvent;
+import my.edu.utar.blooddonationmadnew.adapter.AdminUserListAdapter;
 import my.edu.utar.blooddonationmadnew.admin.data.User;
 import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminUserListBinding;
 

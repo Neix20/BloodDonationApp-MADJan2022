@@ -1,10 +1,14 @@
 package my.edu.utar.blooddonationmadnew.adapter;
 
+import android.content.Intent;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,11 +19,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import my.edu.utar.blooddonationmadnew.R;
-<<<<<<< Updated upstream:BloodDonationMADNew/app/src/main/java/my/edu/utar/blooddonationmadnew/adapter/BloodEventViewAdapter.java
 import my.edu.utar.blooddonationmadnew.data.BloodEvent;
-=======
-import my.edu.utar.blooddonationmadnew.admin.data.BloodEvent;
->>>>>>> Stashed changes:BloodDonationMADNew/app/src/main/java/my/edu/utar/blooddonationmadnew/admin/adapter/BloodEventViewAdapter.java
+import my.edu.utar.blooddonationmadnew.sample.TestEditActivity;
+import my.edu.utar.blooddonationmadnew.ui.AdminEditBloodEventActivity;
 
 public class BloodEventViewAdapter extends FirebaseRecyclerAdapter<BloodEvent, BloodEventViewAdapter.BloodEventViewHolder> {
 
@@ -36,8 +38,9 @@ public class BloodEventViewAdapter extends FirebaseRecyclerAdapter<BloodEvent, B
 
     @Override
     protected void onBindViewHolder(@NonNull BloodEventViewHolder holder, int position, @NonNull BloodEvent model) {
-        holder.title_item_txtView.setText(model.getTitle());
-        holder.address_item_txtView.setText(model.getAddress());
+        holder.id_txtView.setText(model.getId());
+        holder.title_txtView.setText(model.getTitle());
+        holder.address_txtView.setText(model.getAddress());
     }
 
     @NonNull
@@ -49,8 +52,9 @@ public class BloodEventViewAdapter extends FirebaseRecyclerAdapter<BloodEvent, B
 
 
     class BloodEventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener{
-        TextView title_item_txtView;
-        TextView address_item_txtView;
+        TextView id_txtView;
+        TextView title_txtView;
+        TextView address_txtView;
 
         BloodEventViewAdapter mAdapter;
 
@@ -58,8 +62,9 @@ public class BloodEventViewAdapter extends FirebaseRecyclerAdapter<BloodEvent, B
             super(itemView);
 
             // Bind Java Object to XML Element
-            title_item_txtView = itemView.findViewById(R.id.title_item_txtView);
-            address_item_txtView = itemView.findViewById(R.id.address_item_txtView);
+            id_txtView = itemView.findViewById(R.id.id_txtView);
+            title_txtView = itemView.findViewById(R.id.title_txtView);
+            address_txtView = itemView.findViewById(R.id.address_txtView);
 
             this.mAdapter = mAdapter;
 
@@ -71,13 +76,19 @@ public class BloodEventViewAdapter extends FirebaseRecyclerAdapter<BloodEvent, B
         @Override
         public void onClick(View view) {
             // Create Intent
+            String id = id_txtView.getText().toString().trim();
 
-
+            Intent intent = new Intent(view.getContext(), AdminEditBloodEventActivity.class);
+            intent.putExtra("id", id);
+            view.getContext().startActivity(intent);
         }
 
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
             // Long Press Create Context Menu
+            int pos = getAdapterPosition();
+
+            MenuItem delete = contextMenu.add(Menu.NONE, 1, pos, "Delete");
         }
     }
 }

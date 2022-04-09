@@ -1,5 +1,6 @@
 package my.edu.utar.blooddonationmadnew.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -9,9 +10,19 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,7 +32,7 @@ import java.io.IOException;
 
 import my.edu.utar.blooddonationmadnew.R;
 import my.edu.utar.blooddonationmadnew.data.BloodEvent;
-import my.edu.utar.blooddonationmadnew.databinding.ActivityAdminAddBloodEventBinding;
+import my.edu.utar.blooddonationmadnew.databinding.ActivityAdminEditBloodEventBinding;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -30,11 +41,12 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class AdminAddBloodEventActivity extends AppCompatActivity {
+public class AdminEditBloodEventActivity  extends AppCompatActivity implements OnMapReadyCallback{
+    public final static String TAG = AdminEditBloodEventActivity.class.getSimpleName();
 
-    public final String TAG = AdminAddBloodEventActivity.class.getSimpleName();
+    private ActivityAdminEditBloodEventBinding binding;
 
-    private ActivityAdminAddBloodEventBinding binding;
+    private String id;
 
     private EditText title_txt;
     private EditText description_txt;
@@ -48,9 +60,12 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
     private EditText country_txt;
 
     private Button submit_btn;
+    private Button route_btn;
 
     private DatabaseReference dbRef;
     private final String TABLE_NAME = "BloodEvents";
+
+    private GoogleMap mMap;
 
     private HttpTask httpTask;
 
@@ -58,7 +73,7 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityAdminAddBloodEventBinding.inflate(getLayoutInflater());
+        binding = ActivityAdminEditBloodEventBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // Bind Java Objects to XML Element
@@ -74,6 +89,7 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
         country_txt = binding.countryTxt;
 
         submit_btn = binding.submitBtn;
+        route_btn = binding.routeBtn;
 
         // Add Back Button at ActionBar
         if (getSupportActionBar() != null) {
@@ -82,6 +98,14 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
 
         // Initialize Java Objects
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
+
+        // Populate Details
+        Intent mIntent = getIntent();
+        id = mIntent.getStringExtra("id");
+
+        // Populate Map
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         httpTask = new HttpTask();
 
@@ -122,7 +146,7 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
 
         httpTask.getLngAndLat("json", address, api_key, bloodEvent);
 
-        Toast.makeText(this, String.format("Blood Event %s was successfully inserted!", title), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, String.format("Blood Event %s was successfully updated!", title), Toast.LENGTH_SHORT).show();
 
         finish();
     }
@@ -131,6 +155,41 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         finish();
         return true;
+    }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        mMap = googleMap;
+
+        dbRef.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                BloodEvent be = snapshot.getValue(BloodEvent.class);
+
+                title_txt.setText(be.getTitle());
+                description_txt.setText(be.getDescription());
+                phone_txt.setText(be.getPhoneNumber());
+
+                address_line_1_txt.setText(be.getAddress_line_1());
+                address_line_2_txt.setText(be.getAddress_line_2());
+                post_code_txt.setText(be.getPostCode());
+                city_txt.setText(be.getCity());
+                state_txt.setText(be.getState());
+                country_txt.setText(be.getCountry());
+
+                double longitude = be.getLongitude();
+                double latitude = be.getLatitude();
+
+                LatLng location = new LatLng(latitude, longitude);
+                mMap.addMarker(new MarkerOptions().position(location).title(be.getTitle()));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e(TAG, "The read failed: " + error.getCode());
+            }
+        });
     }
 
     private class HttpTask {
@@ -184,13 +243,7 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
                             bloodEvent.setLongitude(longitude);
                             bloodEvent.setLatitude(latitude);
 
-                            // Add to Firebase
-                            dbRef = dbRef.push();
-
-                            String id = dbRef.getKey();
-                            bloodEvent.setId(id);
-
-                            dbRef.setValue(bloodEvent);
+                            // Update to Firebase
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -232,6 +285,5 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
             });
         }
     }
-
 
 }
