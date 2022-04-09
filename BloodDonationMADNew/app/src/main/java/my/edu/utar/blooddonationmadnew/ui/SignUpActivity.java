@@ -13,10 +13,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import my.edu.utar.blooddonationmadnew.admin.ui.AdminMainActivity;
-import my.edu.utar.blooddonationmadnew.databinding.ActivityLoginBinding;
+import my.edu.utar.blooddonationmadnew.data.User;
 import my.edu.utar.blooddonationmadnew.databinding.ActivitySignupBinding;
-import my.edu.utar.blooddonationmadnew.sample.User;
 
 public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -34,6 +32,9 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        binding = ActivitySignupBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // Bind Java Objects to XML Element
         email_txt = binding.emailTxt;
@@ -55,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
                     // Create new user and Store into Database
                     String id = mAuth.getCurrentUser().getUid();
 
-                    User user = new User(id, email, password, "User");
+                    User user = new User();
 
                     dbRef = dbRef.child(id);
                     dbRef.setValue(user);
