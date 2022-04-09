@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import my.edu.utar.blooddonationmadnew.R;
-import my.edu.utar.blooddonationmadnew.admin.ui.AdminEditNotificationActivity;
+import my.edu.utar.blooddonationmadnew.ui.AdminEditNotificationActivity;
 import my.edu.utar.blooddonationmadnew.data.Notification;
 import my.edu.utar.blooddonationmadnew.sample.TestEditActivity;
 
