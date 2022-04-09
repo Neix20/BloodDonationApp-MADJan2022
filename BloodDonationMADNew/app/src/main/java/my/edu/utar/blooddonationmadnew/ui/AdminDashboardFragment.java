@@ -19,8 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import my.edu.utar.blooddonationmadnew.adapter.NotificationViewAdapter;
-import my.edu.utar.blooddonationmadnew.admin.adapter.BloodEventViewAdapter;
-import my.edu.utar.blooddonationmadnew.admin.data.BloodEvent;
+import my.edu.utar.blooddonationmadnew.adapter.BloodEventViewAdapter;
+import my.edu.utar.blooddonationmadnew.data.BloodEvent;
 import my.edu.utar.blooddonationmadnew.data.Notification;
 import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminDashboardBinding;
 

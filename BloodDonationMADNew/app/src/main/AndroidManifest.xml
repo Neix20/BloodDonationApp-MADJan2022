@@ -14,18 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BloodDonationMADNew">
-<<<<<<< Updated upstream
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".ui.UserMainActivity"
-=======
-        <activity
             android:name=".ui.SignUpActivity"
->>>>>>> Stashed changes
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,13 +29,9 @@
             </intent-filter>
         </activity>
 
-<<<<<<< Updated upstream
         <activity android:name=".ui.AdminAddNotificationActivity" android:exported="false" />
         <activity android:name=".ui.AdminEditNotificationActivity" android:exported="false" />
 
-=======
-        <activity android:name=".admin.ui.AdminMainActivity" />
->>>>>>> Stashed changes
         <activity
             android:name=".ui.AdminAddBloodEventActivity"
             android:exported="false" />
