@@ -1,6 +1,8 @@
 package my.edu.utar.blooddonationmadnew.ui;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -16,6 +18,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -69,6 +72,9 @@ public class AdminEditBloodEventActivity  extends AppCompatActivity implements O
 
     private HttpTask httpTask;
 
+    private double longitude;
+    private double latitude;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +116,15 @@ public class AdminEditBloodEventActivity  extends AppCompatActivity implements O
         httpTask = new HttpTask();
 
         submit_btn.setOnClickListener(v -> submitBtn());
+
+        route_btn.setOnClickListener(v -> showRoute());
+    }
+
+    public void showRoute(){
+        Intent intent = new Intent(this, AdminMapResultActivity.class);
+        intent.putExtra("longitude", longitude);
+        intent.putExtra("latitude", latitude);
+        startActivity(intent);
     }
 
     public void submitBtn() {
@@ -177,12 +192,16 @@ public class AdminEditBloodEventActivity  extends AppCompatActivity implements O
                 state_txt.setText(be.getState());
                 country_txt.setText(be.getCountry());
 
-                double longitude = be.getLongitude();
-                double latitude = be.getLatitude();
+                longitude = be.getLongitude();
+                latitude = be.getLatitude();
 
                 LatLng location = new LatLng(latitude, longitude);
-                mMap.addMarker(new MarkerOptions().position(location).title(be.getTitle()));
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+                mMap.addMarker(new MarkerOptions()
+                        .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("medical_center",100,100)))
+                        .position(location)
+                        .title(be.getTitle())
+                );
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
             }
 
             @Override
@@ -190,6 +209,12 @@ public class AdminEditBloodEventActivity  extends AppCompatActivity implements O
                 Log.e(TAG, "The read failed: " + error.getCode());
             }
         });
+    }
+
+    public Bitmap resizeMapIcons(String iconName, int width, int height){
+        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+        return resizedBitmap;
     }
 
     private class HttpTask {
