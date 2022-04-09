@@ -1,4 +1,4 @@
-package my.edu.utar.blooddonationmadnew.admin.ui;
+package my.edu.utar.blooddonationmadnew.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,18 +9,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminUserListBinding;
+import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminDashboardBinding;
 
-public class AdminUserListFragment extends Fragment {
+public class AdminDashboardFragment extends Fragment {
 
-    private final String TAG = AdminUserListFragment.class.getSimpleName();
+    public final static String TAG = AdminDashboardFragment.class.getSimpleName();
 
-    private FragmentAdminUserListBinding binding;
+    private FragmentAdminDashboardBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentAdminUserListBinding.inflate(inflater, container, false);
+        binding = FragmentAdminDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;
     }
+
 }

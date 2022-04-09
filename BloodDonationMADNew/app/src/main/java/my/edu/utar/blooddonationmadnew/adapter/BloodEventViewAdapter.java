@@ -1,11 +1,7 @@
-package my.edu.utar.blooddonationmadnew.admin.adapter;
+package my.edu.utar.blooddonationmadnew.adapter;
 
-import android.content.Intent;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -15,17 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import my.edu.utar.blooddonationmadnew.R;
-import my.edu.utar.blooddonationmadnew.admin.data.BloodEvent;
-import my.edu.utar.blooddonationmadnew.sample.TestEditActivity;
-import my.edu.utar.blooddonationmadnew.sample.User;
-import my.edu.utar.blooddonationmadnew.sample.UserViewAdapter;
+import my.edu.utar.blooddonationmadnew.data.BloodEvent;
 
 public class BloodEventViewAdapter extends FirebaseRecyclerAdapter<BloodEvent, BloodEventViewAdapter.BloodEventViewHolder> {
 
@@ -34,12 +24,6 @@ public class BloodEventViewAdapter extends FirebaseRecyclerAdapter<BloodEvent, B
 
     public final static String TAG = BloodEventViewAdapter.class.getSimpleName();
 
-    /**
-     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
-     * {@link FirebaseRecyclerOptions} for configuration options.
-     *
-     * @param options
-     */
     public BloodEventViewAdapter(@NonNull FirebaseRecyclerOptions<BloodEvent> options) {
         super(options);
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);

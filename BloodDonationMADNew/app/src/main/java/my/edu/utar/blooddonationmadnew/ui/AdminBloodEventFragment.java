@@ -1,4 +1,4 @@
-package my.edu.utar.blooddonationmadnew.admin.ui;
+package my.edu.utar.blooddonationmadnew.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,11 +19,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import my.edu.utar.blooddonationmadnew.admin.adapter.BloodEventViewAdapter;
-import my.edu.utar.blooddonationmadnew.admin.data.BloodEvent;
+import my.edu.utar.blooddonationmadnew.adapter.BloodEventViewAdapter;
+import my.edu.utar.blooddonationmadnew.data.BloodEvent;
 import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminBloodEventBinding;
-import my.edu.utar.blooddonationmadnew.sample.User;
-import my.edu.utar.blooddonationmadnew.sample.UserViewAdapter;
 
 public class AdminBloodEventFragment extends Fragment {
 
@@ -38,6 +37,8 @@ public class AdminBloodEventFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private BloodEventViewAdapter bloodEventViewAdapter;
 
+    private SearchView searchBar;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentAdminBloodEventBinding.inflate(inflater, container, false);
@@ -46,6 +47,8 @@ public class AdminBloodEventFragment extends Fragment {
         // Bind Java Object to XML Element
         mRecyclerView = binding.bloodEventRecView;
         fab = binding.fab;
+
+        searchBar = binding.searchBar;
 
         // Initialize Database Reference
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);

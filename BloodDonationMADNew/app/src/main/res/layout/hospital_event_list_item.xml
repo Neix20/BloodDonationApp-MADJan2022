@@ -16,9 +16,9 @@
         android:text="A"
         android:textSize="50dp"
         android:gravity="center"
-        android:background="@drawable/circle_shape"
+        android:background="@drawable/medical_shape"
         android:src="@drawable/medical_center"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="my.edu.utar.blooddonationmadnew">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,7 +14,7 @@
         android:theme="@style/Theme.BloodDonationMADNew">
 
         <activity
-            android:name=".admin.ui.AdminMainActivity"
+            android:name=".ui.AdminMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +24,7 @@
         </activity>
 
         <activity
-            android:name=".admin.ui.AdminAddBloodEventActivity"
+            android:name=".ui.AdminAddBloodEventActivity"
             android:exported="false" />
 
         <activity

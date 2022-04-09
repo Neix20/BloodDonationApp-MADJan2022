@@ -1,4 +1,4 @@
-package my.edu.utar.blooddonationmadnew.admin.ui;
+package my.edu.utar.blooddonationmadnew.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;

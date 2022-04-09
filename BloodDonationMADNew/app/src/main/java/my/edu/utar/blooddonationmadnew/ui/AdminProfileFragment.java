@@ -1,4 +1,4 @@
-package my.edu.utar.blooddonationmadnew.admin.ui;
+package my.edu.utar.blooddonationmadnew.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

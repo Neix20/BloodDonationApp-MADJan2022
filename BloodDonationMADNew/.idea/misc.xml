@@ -4,8 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/drawable/circle_shape.xml" value="0.21481481481481482" />
+        <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/drawable/ic_baseline_bloodtype_24.xml" value="0.2703125" />
+        <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/drawable/medical_shape.xml" value="0.2703125" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/activity_add_test.xml" value="0.1" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/activity_admin_add_blood_event.xml" value="0.25416666666666665" />
+        <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/activity_admin_edit_blood_event.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/activity_admin_main.xml" value="0.17222222222222222" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/activity_edit_test.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
