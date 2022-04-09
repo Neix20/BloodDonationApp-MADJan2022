@@ -57,6 +57,7 @@ dependencies {
     // Dependency for Firebase Cloud Messaging
     implementation 'com.google.firebase:firebase-messaging:20.0.0'
 
+<<<<<<< Updated upstream
     // Google Map
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
 
@@ -65,6 +66,11 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.2'
 
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.9.2'
+=======
+    // Dependency For Firebase Auth
+    implementation 'com.google.firebase:firebase-auth:19.3.0'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+>>>>>>> Stashed changes
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
