@@ -37,6 +37,8 @@ public class TestActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private UserViewAdapter userViewAdapter;
 
+    private String str;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

@@ -29,6 +29,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".admin.ui.AdminAddNotificationActivity" android:exported="false" />
+        <activity android:name=".admin.ui.AdminEditNotificationActivity" android:exported="false" />
+
         <activity
             android:name=".ui.AdminAddBloodEventActivity"
             android:exported="false" />
