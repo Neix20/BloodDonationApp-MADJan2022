@@ -6,7 +6,6 @@
     android:id="@+id/blood_event_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-<<<<<<< Updated upstream:BloodDonationMADNew/app/src/main/res/layout/list_item_blood_event.xml
     android:orientation="horizontal"
     android:clickable="true"
     android:focusable="true"
@@ -24,14 +23,6 @@
         android:background="@drawable/medical_shape"
         android:src="@drawable/medical_center"
         android:textColor="@color/black" />
-=======
-    android:layout_gravity="center"
-    android:layout_margin="10dp"
-    android:layout_marginEnd="20dp"
-    android:padding="@dimen/card_padding"
-    app:cardElevation="10dp"
-    card_view:cardCornerRadius="20dp">
->>>>>>> Stashed changes:BloodDonationMADNew/app/src/main/res/layout/hospital_event_list_item.xml
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,41 +32,18 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:orientation="horizontal">
 
-        <TextView
-<<<<<<< Updated upstream:BloodDonationMADNew/app/src/main/res/layout/list_item_blood_event.xml
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
             android:id="@+id/id_txtView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
             android:visibility="gone" />
-        <TextView
-            android:id="@+id/title_txtView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Title"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/address_txtView"
-=======
-            android:id="@+id/icon_item_txt"
-            android:layout_width="63dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/circle_shape"
-            android:gravity="center"
-            android:src="@drawable/medical_center"
-            android:text="A"
-            android:textColor="@color/white"
-            android:textSize="50dp" />
-
-        <LinearLayout
->>>>>>> Stashed changes:BloodDonationMADNew/app/src/main/res/layout/hospital_event_list_item.xml
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
 
             <TextView
                 android:id="@+id/title_item_txtView"
