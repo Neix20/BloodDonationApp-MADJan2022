@@ -10,7 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+<<<<<<< Updated upstream
 import my.edu.utar.blooddonationmadnew.data.BloodEvent;
+=======
+>>>>>>> Stashed changes
 import my.edu.utar.blooddonationmadnew.admin.data.User;
 import my.edu.utar.blooddonationmadnew.databinding.ActivityAdminAddUserListBinding;
 
