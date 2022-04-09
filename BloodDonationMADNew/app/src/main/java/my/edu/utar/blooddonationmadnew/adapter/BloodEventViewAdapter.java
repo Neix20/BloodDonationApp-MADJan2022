@@ -39,7 +39,7 @@ public class BloodEventViewAdapter extends FirebaseRecyclerAdapter<BloodEvent, B
     @NonNull
     @Override
     public BloodEventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int pos) {
-        View mItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.hospital_event_list_item, parent, false);
+        View mItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_blood_event, parent, false);
         return new BloodEventViewHolder(mItemView, this);
     }
 

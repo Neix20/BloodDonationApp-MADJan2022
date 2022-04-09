@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_user_bottom_graph.xml"
+    app:startDestination="@+id/nav_user_dashboard">
+
+    <fragment
+        android:id="@+id/nav_user_dashboard"
+        android:name="my.edu.utar.blooddonationmadnew.ui.UserDashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_user_dashboard" />
+
+    <fragment
+        android:id="@+id/nav_user_blood_event"
+        android:name="my.edu.utar.blooddonationmadnew.ui.UserBloodEventFragment"
+        android:label="@string/title_blood_event"
+        tools:layout="@layout/fragment_user_blood_event" />
+
+    <fragment
+        android:id="@+id/nav_user_user_list"
+        android:name="my.edu.utar.blooddonationmadnew.ui.UserUserListFragment"
+        android:label="@string/title_user_list"
+        tools:layout="@layout/fragment_user_user_list" />
+
+    <fragment
+        android:id="@+id/nav_user_profile"
+        android:name="my.edu.utar.blooddonationmadnew.ui.UserProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_user_profile" />
+
+</navigation>

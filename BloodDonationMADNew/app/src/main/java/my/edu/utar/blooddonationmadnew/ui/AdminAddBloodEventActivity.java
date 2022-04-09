@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
@@ -89,16 +90,16 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
 
     public void submitBtn() {
         Log.i(TAG, "Hello World");
-        String title = title_txt.getText().toString();
-        String description = description_txt.getText().toString();
-        String phoneNumber = phone_txt.getText().toString();
+        String title = title_txt.getText().toString().trim();
+        String description = description_txt.getText().toString().trim();
+        String phoneNumber = phone_txt.getText().toString().trim();
 
-        String address_line_1 = address_line_1_txt.getText().toString();
-        String address_line_2 = address_line_2_txt.getText().toString();
-        String post_code = post_code_txt.getText().toString();
-        String city = city_txt.getText().toString();
-        String state = state_txt.getText().toString();
-        String country = country_txt.getText().toString();
+        String address_line_1 = address_line_1_txt.getText().toString().trim();
+        String address_line_2 = address_line_2_txt.getText().toString().trim();
+        String post_code = post_code_txt.getText().toString().trim();
+        String city = city_txt.getText().toString().trim();
+        String state = state_txt.getText().toString().trim();
+        String country = country_txt.getText().toString().trim();
 
         // Use GeoCoding API to get latitude and longitude from Address;
         BloodEvent bloodEvent = new BloodEvent();
@@ -156,7 +157,7 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
             call.enqueue(new Callback() {
                 @Override
                 public void onFailure(final Call call, IOException e) {
-                    Log.e(TAG, e.toString());
+                    Log.e(TAG, e.toString().trim());
                 }
 
                 @Override
@@ -214,13 +215,22 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
                     .post(formBody)
                     .build();
 
-            Response response = httpClient.newCall(request).execute();
+            Call call = httpClient.newCall(request);
 
-            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                    Log.e(TAG, e.toString().trim());
+                }
 
-            // Get response body
-            System.out.println(response.body().string());
+                @Override
+                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
+                    // Get response body
+                    System.out.println(response.body().string());
+                }
+            });
         }
     }
 
