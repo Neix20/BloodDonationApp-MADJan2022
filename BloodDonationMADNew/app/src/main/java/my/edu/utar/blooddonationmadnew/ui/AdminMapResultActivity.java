@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -73,6 +74,7 @@ public class AdminMapResultActivity extends AppCompatActivity{
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
             return;
         }
+
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
@@ -102,7 +104,12 @@ public class AdminMapResultActivity extends AppCompatActivity{
                                             .title("Destination"));
 
                                     // Add Route
-                                    mMap.addPolyline(new PolylineOptions().add(latLng, be_latLng));
+                                    PolylineOptions lineOptions = new PolylineOptions();
+                                    lineOptions.add(latLng, be_latLng);
+                                    lineOptions.width(4);
+                                    lineOptions.color(Color.RED);
+                                    lineOptions.geodesic(true);
+                                    mMap.addPolyline(lineOptions);
 
                                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
                                 }
@@ -110,12 +117,23 @@ public class AdminMapResultActivity extends AppCompatActivity{
                         }
                     }
                 });
+
+        // Add Back Button at ActionBar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     public Bitmap resizeMapIcons(String iconName, int width, int height){
         Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
         Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
         return resizedBitmap;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 
 }
