@@ -23,45 +23,30 @@
         android:background="@drawable/medical_shape"
         android:src="@drawable/medical_center"
         android:textColor="@color/black" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <TextView
+        android:padding="10dp"
+        android:orientation="vertical">
+        <TextView
             android:id="@+id/id_txtView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
             android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/title_item_txtView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Title"
-                android:textColor="@color/black"
-                android:textSize="25dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/address_item_txtView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Address"
-                android:textColor="@color/black" />
-        </LinearLayout>
-
-
+        <TextView
+            android:id="@+id/title_txtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Title"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/address_txtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Address" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
