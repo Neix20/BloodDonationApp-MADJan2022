@@ -19,7 +19,6 @@
         android:layout_height="wrap_content"
         android:padding="4dp">
 
-<<<<<<< Updated upstream
 
         <TextView
             android:id="@+id/icon_item_txt"
@@ -36,33 +35,6 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintVertical_bias="0.384" />
-=======
-    <EditText
-        android:id="@+id/phoneNo_edit_txtView"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:layout_marginStart="8dp"
-        android:editable="false"
-        android:ems="4"
-        android:text="type"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="@+id/phoneNo_txtView"
-        app:layout_constraintStart_toEndOf="@+id/phoneNo_txtView"
-        app:layout_constraintTop_toTopOf="@+id/phoneNo_txtView" />
-
-    <EditText
-        android:id="@+id/bloodType_edit_txtView"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:layout_marginStart="8dp"
-        android:editable="false"
-        android:ems="2"
-        android:text="blood_type"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="@+id/blood_type_txtView"
-        app:layout_constraintStart_toEndOf="@+id/blood_type_txtView"
-        app:layout_constraintTop_toTopOf="@+id/blood_type_txtView" />
->>>>>>> Stashed changes
 
         <EditText
             android:id="@+id/phoneNo_edit_txtView"

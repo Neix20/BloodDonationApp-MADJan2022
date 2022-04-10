@@ -3,13 +3,17 @@ package my.edu.utar.blooddonationmadnew.ui;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -36,19 +40,16 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
 
     private ActivityAdminAddBloodEventBinding binding;
 
-    private EditText title_txt;
-    private EditText description_txt;
-    private EditText phone_txt;
+    private TextInputEditText title_txt;
+    private TextInputEditText description_txt;
+    private TextInputEditText phone_txt;
 
-    private EditText address_line_1_txt;
-    private EditText address_line_2_txt;
-    private EditText post_code_txt;
-    private EditText city_txt;
-    private EditText state_txt;
-    private EditText country_txt;
-
-    private Button submit_btn;
-
+    private TextInputEditText address_line_1_txt;
+    private TextInputEditText address_line_2_txt;
+    private TextInputEditText post_code_txt;
+    private TextInputEditText city_txt;
+    private MaterialAutoCompleteTextView state_txt;
+    private TextInputEditText country_txt;
     private DatabaseReference dbRef;
     private final String TABLE_NAME = "BloodEvents";
 
@@ -73,7 +74,10 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
         state_txt = binding.stateTxt;
         country_txt = binding.countryTxt;
 
-        submit_btn = binding.submitBtn;
+        // Create Adapter for State Text
+        String[] state_arr = getResources().getStringArray(R.array.state_arr);
+        ArrayAdapter<String> stateAdapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, state_arr);
+        state_txt.setAdapter(stateAdapter);
 
         // Add Back Button at ActionBar
         if (getSupportActionBar() != null) {
@@ -84,11 +88,9 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
 
         httpTask = new HttpTask();
-
-        submit_btn.setOnClickListener(v -> submitBtn());
     }
 
-    public void submitBtn() {
+    public void addBloodEvent() {
         String title = title_txt.getText().toString().trim();
         String description = description_txt.getText().toString().trim();
         String phoneNumber = phone_txt.getText().toString().trim();
@@ -132,6 +134,22 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
         finish();
         return true;
     }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.option_save) {
+            addBloodEvent();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_add, menu);
+        return true;
+    }
+
 
     private class HttpTask {
         private final OkHttpClient httpClient;

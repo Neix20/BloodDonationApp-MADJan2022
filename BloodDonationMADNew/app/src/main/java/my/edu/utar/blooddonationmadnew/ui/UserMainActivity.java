@@ -33,7 +33,7 @@ public class UserMainActivity extends AppCompatActivity {
         bottomNavigationView = binding.bottomNavView;
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_user_dashboard, R.id.nav_user_blood_event, R.id.nav_user_user_list, R.id.nav_user_profile
+                R.id.nav_user_dashboard, R.id.nav_user_blood_event, R.id.nav_user_map, R.id.nav_user_user_list, R.id.nav_user_profile
         ).build();
 
         NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
