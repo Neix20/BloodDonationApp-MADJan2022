@@ -10,8 +10,8 @@ public class User {
     private String userType;
     private String name;
     private int age;
-    private double height;
-    private double weight;
+    private int height;
+    private int weight;
     private String bloodType;
     private String phoneNumber;
     private String addr1;
@@ -23,7 +23,7 @@ public class User {
     private String state_bloodType;
 
     public User(String id, String email, String password, String userType,
-                String name, int age, double height, double weight, String bloodType, String phoneNumber,
+                String name, int age, int height, int weight, String bloodType, String phoneNumber,
                 String addr1, String addr2, String postCode, String city, String state, String country) {
         this.id = id;
         this.email = email;
@@ -95,19 +95,19 @@ public class User {
         this.age = age;
     }
 
-    public double getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public double getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 

@@ -19,8 +19,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+
         <activity
-            android:name=".ui.AdminMainActivity"
+            android:name=".ui.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,45 +30,25 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.SignUpActivity" android:exported="false" />
+
+        <activity android:name=".ui.AdminMainActivity" android:exported="false" />
+        <activity android:name=".ui.UserMainActivity" android:exported="false" />
+
         <activity android:name=".ui.AdminAddNotificationActivity" android:exported="false" />
         <activity android:name=".ui.AdminEditNotificationActivity" android:exported="false" />
 
-        <activity
-            android:name=".ui.AdminAddBloodEventActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.AdminCheckUserProfileActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".ui.AdminEditBloodEventActivity"
-            android:exported="false" />
-
+        <activity android:name=".ui.AdminAddBloodEventActivity" android:exported="false" />
+        <activity android:name=".ui.AdminEditBloodEventActivity" android:exported="false" />
         <activity android:name=".ui.AdminMapResultActivity" android:exported="false" />
 
-        <activity
-            android:name=".ui.AdminEditUserActivity"
-            android:exported="false" />
+        <activity android:name=".ui.AdminCheckUserProfileActivity" android:exported="false" />
 
-        <activity
-            android:name=".ui.AdminAddUserActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.UserSearchResultActivity"
-            android:exported="false" />
+        <activity android:name=".ui.AdminAddUserActivity" android:exported="false" />
+        <activity android:name=".ui.AdminEditUserActivity" android:exported="false" />
 
+        <activity android:name=".ui.UserSearchResultActivity" android:exported="false" />
 
-        <activity
-            android:name=".sample.TestActivity"
-        android:exported="false" />
-
-
-        <activity
-            android:name=".sample.TestAddActivity"
-            android:exported="false" />
-        <activity
-            android:name=".sample.TestEditActivity"
-            android:exported="false" />
     </application>
 
 </manifest>
