@@ -98,7 +98,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:paddingTop="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp">
