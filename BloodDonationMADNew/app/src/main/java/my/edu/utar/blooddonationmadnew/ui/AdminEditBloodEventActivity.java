@@ -6,13 +6,14 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -21,6 +22,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,20 +53,18 @@ public class AdminEditBloodEventActivity  extends AppCompatActivity implements O
     private ActivityAdminEditBloodEventBinding binding;
 
     private String id;
+    private String gTitle;
 
-    private EditText title_txt;
-    private EditText description_txt;
-    private EditText phone_txt;
+    private TextInputEditText title_txt;
+    private TextInputEditText description_txt;
+    private TextInputEditText phone_txt;
 
-    private EditText address_line_1_txt;
-    private EditText address_line_2_txt;
-    private EditText post_code_txt;
-    private EditText city_txt;
-    private EditText state_txt;
-    private EditText country_txt;
-
-    private Button submit_btn;
-    private Button route_btn;
+    private TextInputEditText address_line_1_txt;
+    private TextInputEditText address_line_2_txt;
+    private TextInputEditText post_code_txt;
+    private TextInputEditText city_txt;
+    private MaterialAutoCompleteTextView state_txt;
+    private TextInputEditText country_txt;
 
     private DatabaseReference dbRef;
     private final String TABLE_NAME = "BloodEvents";
@@ -94,8 +95,10 @@ public class AdminEditBloodEventActivity  extends AppCompatActivity implements O
         state_txt = binding.stateTxt;
         country_txt = binding.countryTxt;
 
-        submit_btn = binding.submitBtn;
-        route_btn = binding.routeBtn;
+        // Create Adapter for State Text
+        String[] state_arr = getResources().getStringArray(R.array.state_arr);
+        ArrayAdapter<String> stateAdapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, state_arr);
+        state_txt.setAdapter(stateAdapter);
 
         // Add Back Button at ActionBar
         if (getSupportActionBar() != null) {
@@ -114,10 +117,6 @@ public class AdminEditBloodEventActivity  extends AppCompatActivity implements O
         mapFragment.getMapAsync(this);
 
         httpTask = new HttpTask();
-
-        submit_btn.setOnClickListener(v -> submitBtn());
-
-        route_btn.setOnClickListener(v -> showRoute());
     }
 
     public void showRoute(){
@@ -127,7 +126,7 @@ public class AdminEditBloodEventActivity  extends AppCompatActivity implements O
         startActivity(intent);
     }
 
-    public void submitBtn() {
+    public void updateBloodEvent() {
         String title = title_txt.getText().toString().trim();
         String description = description_txt.getText().toString().trim();
         String phoneNumber = phone_txt.getText().toString().trim();
@@ -141,6 +140,7 @@ public class AdminEditBloodEventActivity  extends AppCompatActivity implements O
 
         // Use GeoCoding API to get latitude and longitude from Address;
         BloodEvent bloodEvent = new BloodEvent();
+        bloodEvent.setId(id);
         bloodEvent.setTitle(title);
         bloodEvent.setDescription(description);
         bloodEvent.setPhoneNumber(phoneNumber);
@@ -166,10 +166,42 @@ public class AdminEditBloodEventActivity  extends AppCompatActivity implements O
         finish();
     }
 
+    public void deleteBloodEvent() {
+        new AlertDialog.Builder(this)
+                .setMessage("Are you sure you want to delete?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", (dialog, ind) -> {
+                    dbRef.child(id).removeValue();
+                    Toast.makeText(this, String.format("Successfully Deleted Blood Event %s!", gTitle), Toast.LENGTH_SHORT).show();
+                    finish();
+                })
+                .setNegativeButton("No", (dialog, ind) -> dialog.cancel())
+                .show();
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
         finish();
         return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_update_be, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.option_save) {
+            updateBloodEvent();
+        } else if(id == R.id.option_delete){
+            deleteBloodEvent();
+        } else if(id == R.id.option_navigate) {
+            showRoute();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -182,6 +214,8 @@ public class AdminEditBloodEventActivity  extends AppCompatActivity implements O
                 BloodEvent be = snapshot.getValue(BloodEvent.class);
 
                 title_txt.setText(be.getTitle());
+                gTitle = be.getTitle();
+
                 description_txt.setText(be.getDescription());
                 phone_txt.setText(be.getPhoneNumber());
 
@@ -269,6 +303,7 @@ public class AdminEditBloodEventActivity  extends AppCompatActivity implements O
                             bloodEvent.setLatitude(latitude);
 
                             // Update to Firebase
+                            dbRef.child(id).setValue(bloodEvent);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

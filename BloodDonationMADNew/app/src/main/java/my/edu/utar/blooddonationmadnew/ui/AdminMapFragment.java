@@ -24,12 +24,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,17 +38,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import my.edu.utar.blooddonationmadnew.R;
 import my.edu.utar.blooddonationmadnew.data.BloodEvent;
+import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminMapBinding;
 import my.edu.utar.blooddonationmadnew.databinding.FragmentUserMapBinding;
 import my.edu.utar.blooddonationmadnew.util.Util;
 
-public class UserMapFragment extends Fragment {
-    public final static String TAG = UserMapFragment.class.getSimpleName();
+public class AdminMapFragment extends Fragment {
+    public final static String TAG = AdminMapFragment.class.getSimpleName();
 
     private final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
-    private FragmentUserMapBinding binding;
+    private FragmentAdminMapBinding binding;
 
     private GoogleMap mMap;
     private MapView mapView;
@@ -61,7 +59,7 @@ public class UserMapFragment extends Fragment {
     private FusedLocationProviderClient fusedLocationClient;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentUserMapBinding.inflate(inflater, container, false);
+        binding = FragmentAdminMapBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         mapView = binding.map;
@@ -187,8 +185,6 @@ public class UserMapFragment extends Fragment {
         Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
         return resizedBitmap;
     }
-
-
 
     @Override
     public void onResume() {

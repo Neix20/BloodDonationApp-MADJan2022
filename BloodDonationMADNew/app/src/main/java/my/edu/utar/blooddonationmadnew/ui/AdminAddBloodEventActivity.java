@@ -50,6 +50,7 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
     private TextInputEditText city_txt;
     private MaterialAutoCompleteTextView state_txt;
     private TextInputEditText country_txt;
+
     private DatabaseReference dbRef;
     private final String TABLE_NAME = "BloodEvents";
 
@@ -135,19 +136,19 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_add, menu);
+        return true;
+    }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.option_save) {
             addBloodEvent();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_add, menu);
-        return true;
     }
 
 

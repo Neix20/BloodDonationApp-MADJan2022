@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity_Login">
+    tools:context=".ui.LoginActivity">
 
     <ImageView
         android:id="@+id/logo_img"
@@ -13,20 +13,7 @@
         android:layout_height="141dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        app:srcCompat="@drawable/medical_center" />
-
-    <TextView
-        android:id="@+id/tv_login_title2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="serif-monospace"
-        android:text="Login"
-        android:textColor="#B5000000"
-        android:textSize="25sp"
-        android:textStyle="bold|italic" />
+        android:src="@drawable/medical_center" />
 
     <TextView
         android:id="@+id/tv_login_username"
@@ -41,7 +28,7 @@
         android:textStyle="bold|italic" />
 
     <EditText
-        android:id="@+id/emailTxt"
+        android:id="@+id/email_txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
@@ -62,35 +49,57 @@
         android:textSize="24sp"
         android:textStyle="bold|italic" />
 
-    <EditText
-        android:id="@+id/pwdTxt"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:password="true"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:layout_gravity="center">
+
+        <EditText
+            android:id="@+id/pwd_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageView
+            android:id="@+id/show_pass_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_baseline_visibility_off_24"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="154dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/loginBtn"
-            android:layout_width="225dp"
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
             android:text="Login" />
 
         <Button
-            android:id="@+id/signupBtn"
-            android:layout_width="225dp"
+            android:id="@+id/signup_btn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
             android:text="Sign Up" />
 
     </LinearLayout>

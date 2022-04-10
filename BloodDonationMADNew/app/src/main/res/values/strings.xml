@@ -7,6 +7,8 @@
     <string name="API_KEY">AIzaSyCmSSCmR70lsezXk-6dkPbrB8V0Z9GbuEg</string>
     <string name="title_map">Event Map</string>
     <string name="option_save">Save</string>
+    <string name="option_delete">Delete</string>
+    <string name="option_map">Show Map</string>
     <string-array name="state_arr">
         <item>Kuala Lumpur</item>
         <item>Labuan</item>

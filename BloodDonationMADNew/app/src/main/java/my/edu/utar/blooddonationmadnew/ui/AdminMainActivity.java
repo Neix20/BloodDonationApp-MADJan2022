@@ -33,7 +33,7 @@ public class AdminMainActivity extends AppCompatActivity {
         bottomNavigationView = binding.bottomNavView;
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_admin_dashboard, R.id.nav_admin_blood_event, R.id.nav_admin_user_list, R.id.nav_admin_profile
+                R.id.nav_admin_dashboard, R.id.nav_admin_blood_event, R.id.nav_admin_map, R.id.nav_admin_user_list, R.id.nav_admin_profile
         ).build();
 
         NavController navController = Navigation.findNavController(this, R.id.navHostFragment);

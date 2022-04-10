@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -111,8 +112,16 @@ public class AdminBloodEventFragment extends Fragment {
                 for(DataSnapshot bloodEventSnapshot : snapshot.getChildren()){
                     if(ind == pos){
                         BloodEvent bloodEvent = bloodEventSnapshot.getValue(BloodEvent.class);
-                        dbRef.child(bloodEvent.getId()).removeValue();
-                        Toast.makeText(getContext(), String.format("Blood Event %s was successfully removed!", bloodEvent.getTitle()), Toast.LENGTH_SHORT).show();
+                        new AlertDialog.Builder(getContext())
+                                .setMessage("Are you sure you want to delete?")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes", (dialog, ik) -> {
+                                    dbRef.child(bloodEvent.getId()).removeValue();
+                                    Toast.makeText(getContext(), String.format("Successfully Deleted Blood Event %s!", bloodEvent.getTitle()), Toast.LENGTH_SHORT).show();
+                                })
+                                .setNegativeButton("No", (dialog, ik) -> dialog.cancel())
+                                .show();
+
                     }
                     ind++;
                 }

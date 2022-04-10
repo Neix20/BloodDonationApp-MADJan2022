@@ -12,6 +12,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -32,6 +34,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import my.edu.utar.blooddonationmadnew.R;
 import my.edu.utar.blooddonationmadnew.databinding.ActivityMapRouteBinding;
+import my.edu.utar.blooddonationmadnew.util.Util;
 
 public class AdminMapResultActivity extends AppCompatActivity{
 
@@ -92,12 +95,16 @@ public class AdminMapResultActivity extends AppCompatActivity{
 
                                     LatLng latLng = new LatLng(latitude, longitude);
                                     mMap.addMarker(new MarkerOptions()
+                                            .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("person", 100, 100)))
                                             .position(latLng)
                                             .title("Depot")
                                     );
 
                                     // Add Medical Center marker
                                     LatLng be_latLng = new LatLng(be_lat, be_lng);
+
+                                    double distance = Util.distance(latLng.latitude, latLng.longitude, be_lat, be_lng);
+
                                     mMap.addMarker(new MarkerOptions()
                                             .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("medical_center",100,100)))
                                             .position(be_latLng)
@@ -111,7 +118,17 @@ public class AdminMapResultActivity extends AppCompatActivity{
                                     lineOptions.geodesic(true);
                                     mMap.addPolyline(lineOptions);
 
-                                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 7));
+
+                                    // Set On Click Listener
+                                    mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                                        @Override
+                                        public boolean onMarkerClick(@NonNull Marker marker) {
+                                            if(marker.getTitle().equals("Destination"))
+                                                Toast.makeText(getApplicationContext(), String.format("Distance: %skm", Util.formatNumber((int) distance, ",")), Toast.LENGTH_SHORT).show();
+                                            return false;
+                                        }
+                                    });
                                 }
                             });
                         }

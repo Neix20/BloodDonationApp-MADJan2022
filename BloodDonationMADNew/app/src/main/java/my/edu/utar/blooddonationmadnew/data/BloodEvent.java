@@ -134,4 +134,22 @@ public class BloodEvent {
         BloodEvent that = (BloodEvent) o;
         return Objects.equals(id, that.id);
     }
+
+    @Override
+    public String toString() {
+        return "BloodEvent{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address_line_1='" + address_line_1 + '\'' +
+                ", address_line_2='" + address_line_2 + '\'' +
+                ", postCode='" + postCode + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                '}';
+    }
 }
