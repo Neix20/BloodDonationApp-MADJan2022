@@ -25,6 +25,7 @@ import my.edu.utar.blooddonationmadnew.R;
 
 import my.edu.utar.blooddonationmadnew.data.User;
 import my.edu.utar.blooddonationmadnew.sample.TestEditActivity;
+import my.edu.utar.blooddonationmadnew.ui.AdminCheckUserProfileActivity;
 
 public class UserViewAdapter extends FirebaseRecyclerAdapter<User, UserViewAdapter.UserViewHolder> {
 
@@ -88,8 +89,9 @@ public class UserViewAdapter extends FirebaseRecyclerAdapter<User, UserViewAdapt
 
                     for(DataSnapshot userSnapshot : snapshot.getChildren()){
                         if(ind == pos){
+                            //Todo
                             User tmpUser = userSnapshot.getValue(User.class);
-                            Intent intent = new Intent(view.getContext(), TestEditActivity.class);
+                            Intent intent = new Intent(view.getContext(), AdminCheckUserProfileActivity.class);
                             intent.putExtra("id", tmpUser.getId());
                             view.getContext().startActivity(intent);
                         }

@@ -44,6 +44,7 @@ public class UserSearchResultActivity extends AppCompatActivity {
         Intent mIntent = getIntent();
         String state = mIntent.getStringExtra("state");
 
+        //Todo add add blood type to query
         Query query = dbRef.orderByChild("state").equalTo(state);
         FirebaseRecyclerOptions<User> options = new FirebaseRecyclerOptions.Builder<User>().setQuery(query, User.class).build();
         userViewAdapter = new UserViewAdapter(options);
