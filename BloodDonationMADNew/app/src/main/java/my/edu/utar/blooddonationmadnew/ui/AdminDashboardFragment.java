@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,8 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import my.edu.utar.blooddonationmadnew.adapter.NotificationViewAdapter;
-import my.edu.utar.blooddonationmadnew.adapter.BloodEventViewAdapter;
-import my.edu.utar.blooddonationmadnew.data.BloodEvent;
 import my.edu.utar.blooddonationmadnew.data.Notification;
 import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminDashboardBinding;
 

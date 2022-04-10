@@ -24,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 import my.edu.utar.blooddonationmadnew.R;
 
 import my.edu.utar.blooddonationmadnew.data.User;
-import my.edu.utar.blooddonationmadnew.sample.TestEditActivity;
 import my.edu.utar.blooddonationmadnew.ui.AdminCheckUserProfileActivity;
 
 public class UserViewAdapter extends FirebaseRecyclerAdapter<User, UserViewAdapter.UserViewHolder> {
@@ -32,7 +31,7 @@ public class UserViewAdapter extends FirebaseRecyclerAdapter<User, UserViewAdapt
     private DatabaseReference dbRef;
     private final String TABLE_NAME = "users";
 
-    public final static String TAG = BloodEventViewAdapter.class.getSimpleName();
+    public final static String TAG = AdminBloodEventViewAdapter.class.getSimpleName();
 
     public UserViewAdapter(@NonNull FirebaseRecyclerOptions<User> options) {
         super(options);

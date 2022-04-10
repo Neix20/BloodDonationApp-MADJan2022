@@ -27,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import my.edu.utar.blooddonationmadnew.adapter.BloodEventViewAdapter;
+import my.edu.utar.blooddonationmadnew.adapter.AdminBloodEventViewAdapter;
 import my.edu.utar.blooddonationmadnew.data.BloodEvent;
 import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminBloodEventBinding;
 
@@ -43,7 +43,7 @@ public class AdminBloodEventFragment extends Fragment {
     private final String TABLE_NAME = "BloodEvents";
 
     private RecyclerView mRecyclerView;
-    private BloodEventViewAdapter bloodEventViewAdapter;
+    private AdminBloodEventViewAdapter adminBloodEventViewAdapter;
 
     private SearchView searchBar;
 
@@ -62,9 +62,9 @@ public class AdminBloodEventFragment extends Fragment {
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
 
         FirebaseRecyclerOptions<BloodEvent> options = new FirebaseRecyclerOptions.Builder<BloodEvent>().setQuery(dbRef, BloodEvent.class).build();
-        bloodEventViewAdapter = new BloodEventViewAdapter(options);
+        adminBloodEventViewAdapter = new AdminBloodEventViewAdapter(options);
 
-        mRecyclerView.setAdapter(bloodEventViewAdapter);
+        mRecyclerView.setAdapter(adminBloodEventViewAdapter);
 
         // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -84,9 +84,9 @@ public class AdminBloodEventFragment extends Fragment {
             public boolean onQueryTextChange(String searchText) {
                 Query firebaseSearchQuery = dbRef.orderByChild("title").startAt(searchText).endAt(searchText + "\uf8ff");
                 FirebaseRecyclerOptions<BloodEvent> options = new FirebaseRecyclerOptions.Builder<BloodEvent>().setQuery(firebaseSearchQuery, BloodEvent.class).build();
-                bloodEventViewAdapter = new BloodEventViewAdapter(options);
-                bloodEventViewAdapter.startListening();
-                mRecyclerView.setAdapter(bloodEventViewAdapter);
+                adminBloodEventViewAdapter = new AdminBloodEventViewAdapter(options);
+                adminBloodEventViewAdapter.startListening();
+                mRecyclerView.setAdapter(adminBloodEventViewAdapter);
                 return false;
             }
         });
@@ -139,13 +139,13 @@ public class AdminBloodEventFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        bloodEventViewAdapter.startListening();
+        adminBloodEventViewAdapter.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        bloodEventViewAdapter.stopListening();
+        adminBloodEventViewAdapter.stopListening();
     }
 
 }

@@ -29,6 +29,7 @@
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/activity_signup.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/activity_test.xml" value="0.25416666666666665" />
+        <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/activity_user_check_blood_event.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/activity_user_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/admin_user_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/admin_user_list_item.xml" value="0.25416666666666665" />
@@ -36,6 +37,7 @@
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/fragment_admin_dashboard.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/fragment_admin_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/fragment_admin_user_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/fragment_user_blood_event.xml" value="0.20185185185185187" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/fragment_user_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/fragment_user_user_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/layout/hospital_event_list_item.xml" value="0.25416666666666665" />
@@ -47,6 +49,7 @@
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/menu/menu_edit.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/menu/menu_update.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/menu/menu_update_be.xml" value="0.25416666666666665" />
+        <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/menu/menu_update_user_be.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/menu/menu_user_bottom_nav.xml" value="0.25416666666666665" />
       </map>
     </option>
