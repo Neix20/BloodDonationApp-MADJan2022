@@ -69,8 +69,8 @@ public class AdminBloodEventFragment extends Fragment {
         // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL);
-        mRecyclerView.addItemDecoration(dividerItemDecoration);
+//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL);
+//        mRecyclerView.addItemDecoration(dividerItemDecoration);
 
         fab.setOnClickListener(view -> nAddBloodEvent());
 

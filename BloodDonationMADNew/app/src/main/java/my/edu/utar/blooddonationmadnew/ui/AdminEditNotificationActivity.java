@@ -1,13 +1,20 @@
 package my.edu.utar.blooddonationmadnew.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import my.edu.utar.blooddonationmadnew.data.Notification;
 import my.edu.utar.blooddonationmadnew.databinding.ActivityAdminEditNotificationBinding;
@@ -19,6 +26,8 @@ public class AdminEditNotificationActivity extends AppCompatActivity {
     private EditText body_txt;
 
     private Button submit_btn;
+
+    private String noti_id;
 
     private ActivityAdminEditNotificationBinding binding;
 
@@ -46,22 +55,38 @@ public class AdminEditNotificationActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        submit_btn.setOnClickListener(v -> submitBtn());
+        // get notification id passed
+        Intent mIntent = getIntent();
+        noti_id = mIntent.getStringExtra("noti_id");
 
-        // TODO undone
+        dbRef.child(noti_id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Notification notification = snapshot.getValue(Notification.class);
+
+                title_txt.setText(notification.getTitle());
+                body_txt.setText(notification.getBody());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e(TAG, "The read failed: " + error.getCode());
+            }
+        });
+
+        submit_btn.setOnClickListener(v -> submitBtn());
     }
 
     public void submitBtn(){
         String title = title_txt.getText().toString();
         String body = body_txt.getText().toString();
 
-        // Add New Notification
-        dbRef = dbRef.push();
+        Notification newNoti = new Notification("", title, body);
 
-        String id = dbRef.getKey();
-        Notification notification = new Notification(id, title, body);
+        // Save Notification
+        dbRef.child(noti_id).setValue(newNoti);
 
-        dbRef.setValue(notification);
+        Toast.makeText(this, String.format("Notification was successfully updated!"), Toast.LENGTH_SHORT).show();
 
         finish();
     }

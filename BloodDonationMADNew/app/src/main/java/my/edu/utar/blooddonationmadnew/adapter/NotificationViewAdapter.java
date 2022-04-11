@@ -66,12 +66,9 @@ public class NotificationViewAdapter extends FirebaseRecyclerAdapter<Notificatio
 
         @Override
         public void onClick(View view) {
-            // TODO Create Edit Notification Intent
-
             Intent intent = new Intent(view.getContext(), AdminEditNotificationActivity.class);
-            intent.putExtra("id", noti_id);
+            intent.putExtra("noti_id", noti_id);
             view.getContext().startActivity(intent);
-
         }
 
         @Override
