@@ -1,48 +1,40 @@
 package my.edu.utar.blooddonationmadnew.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import my.edu.utar.blooddonationmadnew.databinding.ActivityEditTestBinding;
+import my.edu.utar.blooddonationmadnew.data.Notification;
+import my.edu.utar.blooddonationmadnew.databinding.ActivityAdminEditNotificationBinding;
 
 public class AdminEditNotificationActivity extends AppCompatActivity {
+    public final String TAG = AdminEditNotificationActivity.class.getSimpleName();
 
-    private DatabaseReference dbRef;
-
-    private final String TABLE_NAME = "Notification";
-
-    public final static String TAG = AdminEditNotificationActivity.class.getSimpleName();
-
-    private ActivityEditTestBinding binding;
-
-    private String id;
-
-    private EditText email_txt;
-    private EditText pwd_txt;
+    private EditText title_txt;
+    private EditText body_txt;
 
     private Button submit_btn;
+
+    private ActivityAdminEditNotificationBinding binding;
+
+    private DatabaseReference dbRef;
+    private final String TABLE_NAME = "Notification";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityEditTestBinding.inflate(getLayoutInflater());
+        binding = ActivityAdminEditNotificationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        email_txt = binding.emailTxt;
-        pwd_txt = binding.pwdTxt;
+        // Bind Java Object to XML element
+        title_txt = binding.titleTxt;
+        body_txt = binding.bodyTxt;
 
         submit_btn = binding.submitBtn;
 
@@ -54,39 +46,24 @@ public class AdminEditNotificationActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        Intent mIntent = getIntent();
-        id = mIntent.getStringExtra("id");
+        submit_btn.setOnClickListener(v -> submitBtn());
 
-        dbRef.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                User tmpUser = snapshot.getValue(User.class);
-//
-//                email_txt.setText(tmpUser.getEmail());
-//                pwd_txt.setText(tmpUser.getPassword());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e(TAG, "The read failed: " + error.getCode());
-            }
-        });
-
-        submit_btn.setOnClickListener(view -> submitBtn());
+        // TODO undone
     }
 
-    public void submitBtn() {
-        // Get Email and Password
-//        String email = email_txt.getText().toString();
-//        String password = pwd_txt.getText().toString();
-//
-//        User tmpUser = new User(id, email, password, "User");
-//
-//        dbRef.child(id).setValue(tmpUser);
-//
-//        Toast.makeText(this, String.format("User %s was successfully updated!", email), Toast.LENGTH_SHORT).show();
-//
-//        finish();
+    public void submitBtn(){
+        String title = title_txt.getText().toString();
+        String body = body_txt.getText().toString();
+
+        // Add New Notification
+        dbRef = dbRef.push();
+
+        String id = dbRef.getKey();
+        Notification notification = new Notification(id, title, body);
+
+        dbRef.setValue(notification);
+
+        finish();
     }
 
     @Override
