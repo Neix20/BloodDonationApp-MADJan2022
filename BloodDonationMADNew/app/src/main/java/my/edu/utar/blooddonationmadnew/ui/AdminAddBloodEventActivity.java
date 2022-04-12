@@ -77,7 +77,7 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
 
         // Create Adapter for State Text
         String[] state_arr = getResources().getStringArray(R.array.state_arr);
-        ArrayAdapter<String> stateAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, state_arr);
+        ArrayAdapter<String> stateAdapter = new ArrayAdapter<String>(this, R.layout.dropdownmenu_listitem, state_arr);
         state_txt.setAdapter(stateAdapter);
 
         // Add Back Button at ActionBar

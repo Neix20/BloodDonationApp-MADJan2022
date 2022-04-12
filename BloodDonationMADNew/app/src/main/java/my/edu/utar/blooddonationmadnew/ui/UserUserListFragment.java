@@ -47,11 +47,11 @@ public class UserUserListFragment extends Fragment {
         // Choices
         // Should Import from String Values
         String[] state_arr = getResources().getStringArray(R.array.state_arr);
-        ArrayAdapter<String> stateAdapter= new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1, state_arr);
+        ArrayAdapter<String> stateAdapter= new ArrayAdapter<>(this.getContext(), R.layout.dropdownmenu_listitem, state_arr);
         state_txt.setAdapter(stateAdapter);
 
         String[] blood_type_arr = getResources().getStringArray(R.array.blood_type_arr);
-        ArrayAdapter<String> bloodTypeAdapter = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1, blood_type_arr);
+        ArrayAdapter<String> bloodTypeAdapter = new ArrayAdapter<>(this.getContext(), R.layout.dropdownmenu_listitem, blood_type_arr);
         bloodType_txt.setAdapter(bloodTypeAdapter);
 
         submit_btn.setOnClickListener(v -> submitBtn());

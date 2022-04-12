@@ -29,8 +29,6 @@ import java.util.Arrays;
 import my.edu.utar.blooddonationmadnew.R;
 import my.edu.utar.blooddonationmadnew.data.User;
 import my.edu.utar.blooddonationmadnew.databinding.ActivityAdminEditUserListBinding;
-import my.edu.utar.blooddonationmadnew.databinding.ActivityEditTestBinding;
-import my.edu.utar.blooddonationmadnew.sample.TestEditActivity;
 
 public class AdminEditUserActivity extends AppCompatActivity {
 

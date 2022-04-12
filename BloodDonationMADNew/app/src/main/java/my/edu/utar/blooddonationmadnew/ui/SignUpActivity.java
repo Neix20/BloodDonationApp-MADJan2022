@@ -76,11 +76,11 @@ public class SignUpActivity extends AppCompatActivity {
 
         // Set Adapter
         String[] blood_type_arr = getResources().getStringArray(R.array.blood_type_arr);
-        ArrayAdapter<String> bloodTypeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, blood_type_arr);
+        ArrayAdapter<String> bloodTypeAdapter = new ArrayAdapter<>(this, R.layout.dropdownmenu_listitem, blood_type_arr);
         bloodType_txt.setAdapter(bloodTypeAdapter);
 
         String[] state_arr = getResources().getStringArray(R.array.state_arr);
-        ArrayAdapter<String> stateAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, state_arr);
+        ArrayAdapter<String> stateAdapter = new ArrayAdapter<String>(this, R.layout.dropdownmenu_listitem, state_arr);
         state_txt.setAdapter(stateAdapter);
 
         mAuth = FirebaseAuth.getInstance();

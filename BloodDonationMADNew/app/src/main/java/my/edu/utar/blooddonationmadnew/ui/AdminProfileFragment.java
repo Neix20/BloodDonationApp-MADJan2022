@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -16,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -38,29 +38,29 @@ public class AdminProfileFragment extends Fragment {
     private DatabaseReference dbRef;
     private final String TABLE_NAME = "users";
 
-    private EditText email_txt;
-    private EditText password_txt;
+    private TextInputEditText email_txt;
+    private TextInputEditText password_txt;
     private MaterialAutoCompleteTextView userType_txt;
 
-    private EditText name_txt;
-    private EditText age_txt;
-    private EditText height_txt;
-    private EditText weight_txt;
+    private TextInputEditText name_txt;
+    private TextInputEditText age_txt;
+    private TextInputEditText height_txt;
+    private TextInputEditText weight_txt;
     private MaterialAutoCompleteTextView bloodType_txt;
-    private EditText phoneNumber_txt;
+    private TextInputEditText phoneNumber_txt;
 
-    private EditText addr1_txt;
-    private EditText addr2_txt;
-    private EditText postCode_txt;
-    private EditText city_txt;
+    private TextInputEditText addr1_txt;
+    private TextInputEditText addr2_txt;
+    private TextInputEditText postCode_txt;
+    private TextInputEditText city_txt;
     private MaterialAutoCompleteTextView state_txt;
-    private EditText country_txt;
+    private TextInputEditText country_txt;
 
     private FirebaseUser cur_user;
     private String id;
-    private String gTitle;
 
     private ImageView save_btn;
+    private ImageView logout_btn;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -87,18 +87,19 @@ public class AdminProfileFragment extends Fragment {
         country_txt = binding.countryTxt;
 
         save_btn = binding.saveBtn;
+        logout_btn = binding.logoutBtn;
 
         //Set Drop down menu debug
         String[] state_arr = getResources().getStringArray(R.array.state_arr);
-        ArrayAdapter<String> stateAdapter= new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1, state_arr);
+        ArrayAdapter<String> stateAdapter= new ArrayAdapter<>(this.getContext(), R.layout.dropdownmenu_listitem, state_arr);
         state_txt.setAdapter(stateAdapter);
 
         String[] blood_type_arr = getResources().getStringArray(R.array.blood_type_arr);
-        ArrayAdapter<String> bloodTypeAdapter = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1, blood_type_arr);
+        ArrayAdapter<String> bloodTypeAdapter = new ArrayAdapter<>(this.getContext(), R.layout.dropdownmenu_listitem, blood_type_arr);
         bloodType_txt.setAdapter(bloodTypeAdapter);
 
         String[] user_type_arr = getResources().getStringArray(R.array.user_type_arr);
-        ArrayAdapter<String> userTypeAdapter = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1, user_type_arr);
+        ArrayAdapter<String> userTypeAdapter = new ArrayAdapter<>(this.getContext(), R.layout.dropdownmenu_listitem, user_type_arr);
         userType_txt.setAdapter(userTypeAdapter);
 
         // Initialize Java Objects
@@ -118,7 +119,6 @@ public class AdminProfileFragment extends Fragment {
                 userType_txt.setText(tmpUser.getUserType());
 
                 name_txt.setText(tmpUser.getName());
-                gTitle = tmpUser.getName();
 
                 int _age = tmpUser.getAge();
                 String age = (_age==0) ? "0" : String.valueOf(_age);
@@ -150,8 +150,13 @@ public class AdminProfileFragment extends Fragment {
         });
 
         save_btn.setOnClickListener(v -> updateUser());
+        logout_btn.setOnClickListener(v -> logoutUser());
 
         return root;
+    }
+
+    private void logoutUser(){
+        FirebaseAuth.getInstance().signOut();
     }
 
     public void updateUser() {
