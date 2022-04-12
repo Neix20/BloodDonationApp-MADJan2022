@@ -102,6 +102,11 @@ public class AdminAddUserActivity extends AppCompatActivity {
         // Initialize Java Objects
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
 
+        // Add Back Button at ActionBar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         submit_btn.setOnClickListener(v -> submitBtn());
     }
 

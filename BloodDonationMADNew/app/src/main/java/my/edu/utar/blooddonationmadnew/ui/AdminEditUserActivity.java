@@ -148,6 +148,11 @@ public class AdminEditUserActivity extends AppCompatActivity {
             }
         });
 
+        // Add Back Button at ActionBar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         submit_btn.setOnClickListener(view -> submitBtn());
     }
 

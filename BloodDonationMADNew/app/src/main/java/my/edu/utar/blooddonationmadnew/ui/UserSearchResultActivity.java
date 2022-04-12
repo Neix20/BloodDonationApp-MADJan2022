@@ -13,7 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import my.edu.utar.blooddonationmadnew.adapter.UserViewAdapter;
+import my.edu.utar.blooddonationmadnew.adapter.AdminUserViewAdapter;
 import my.edu.utar.blooddonationmadnew.databinding.ActivityUserSearchResultBinding;
 import my.edu.utar.blooddonationmadnew.data.User;
 
@@ -27,7 +27,7 @@ public class UserSearchResultActivity extends AppCompatActivity {
     private final String TABLE_NAME = "users";
 
     private RecyclerView mRecyclerView;
-    private UserViewAdapter userViewAdapter;
+    private AdminUserViewAdapter adminUserViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -47,9 +47,9 @@ public class UserSearchResultActivity extends AppCompatActivity {
         // Todo add add blood type to query
         Query query = dbRef.orderByChild("state").equalTo(state);
         FirebaseRecyclerOptions<User> options = new FirebaseRecyclerOptions.Builder<User>().setQuery(query, User.class).build();
-        userViewAdapter = new UserViewAdapter(options);
+        adminUserViewAdapter = new AdminUserViewAdapter(options);
 
-        mRecyclerView.setAdapter(userViewAdapter);
+        mRecyclerView.setAdapter(adminUserViewAdapter);
 
         // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -61,12 +61,12 @@ public class UserSearchResultActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        userViewAdapter.startListening();
+        adminUserViewAdapter.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        userViewAdapter.stopListening();
+        adminUserViewAdapter.stopListening();
     }
 }

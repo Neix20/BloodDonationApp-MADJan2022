@@ -3,8 +3,7 @@ package my.edu.utar.blooddonationmadnew.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,17 +17,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import my.edu.utar.blooddonationmadnew.data.User;
 
-import my.edu.utar.blooddonationmadnew.databinding.ActivityCheckUserProfileBinding;
+import my.edu.utar.blooddonationmadnew.databinding.ActivityUserCheckUserProfileBinding;
 
-public class UserCheckUserProfile extends AppCompatActivity {
+public class UserCheckUserProfileActivity extends AppCompatActivity {
 
     private DatabaseReference dbRef;
 
     private final String TABLE_NAME = "users";
 
-    public final static String TAG = UserCheckUserProfile.class.getSimpleName();
+    public final static String TAG = UserCheckUserProfileActivity.class.getSimpleName();
 
-    private ActivityCheckUserProfileBinding binding;
+    private @NonNull ActivityUserCheckUserProfileBinding binding;
 
     private String id;
 
@@ -50,7 +49,7 @@ public class UserCheckUserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityCheckUserProfileBinding.inflate(getLayoutInflater());
+        binding = ActivityUserCheckUserProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // Bind Java Objects to XML Element
