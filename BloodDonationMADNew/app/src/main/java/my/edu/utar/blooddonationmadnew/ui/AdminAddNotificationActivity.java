@@ -122,13 +122,14 @@ public class AdminAddNotificationActivity extends AppCompatActivity {
             // form parameters
             String json = String.format("{\"to\":\"%s\",\"notification\":{\"title\":\"%s\",\"body\":\"%s\"}}", topic, title, body);
 
+            Log.i(TAG, json);
+
             RequestBody formBody = RequestBody.create(json, MediaType.parse("application/json"));
 
             Request request = new Request.Builder()
-                    .url("https://httpbin.org/post")
+                    .url("https://fcm.googleapis.com/fcm/send")
                     .addHeader("Authorization", "key=AAAAzpUTlAY:APA91bElinNPX2qpwOh7Afo7gj4nfIbp3kHbZVOTDpsExDH0SPC240K2M9cHaliZ1Ggt1psfUKXsdpgHMqUGimB8BBwyqg3aUF6N-uY7vNTJt4dew7o8yHfM9uMJEbrzhpSxy4Bv3iUX")
                     .addHeader("Content-Type", "application/json")
-                    .addHeader("User-Agent", "OkHttp Bot")
                     .post(formBody)
                     .build();
 
