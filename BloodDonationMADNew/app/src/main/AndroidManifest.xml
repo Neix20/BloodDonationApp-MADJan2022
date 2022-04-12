@@ -35,7 +35,6 @@
         <!--<activity android:name=".ui.UserMainActivity" android:exported="false" />-->
 
         <activity android:name=".ui.AdminAddNotificationActivity" android:exported="false" />
-        <activity android:name=".ui.AdminEditNotificationActivity" android:exported="false" />
 
         <activity android:name=".ui.AdminAddBloodEventActivity" android:exported="false" />
         <activity android:name=".ui.AdminEditBloodEventActivity" android:exported="false" />

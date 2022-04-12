@@ -1,8 +1,9 @@
 package my.edu.utar.blooddonationmadnew.adapter;
 
-import android.content.Intent;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -16,7 +17,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import my.edu.utar.blooddonationmadnew.R;
-import my.edu.utar.blooddonationmadnew.ui.AdminEditNotificationActivity;
 import my.edu.utar.blooddonationmadnew.data.Notification;
 
 public class AdminNotificationViewAdapter extends FirebaseRecyclerAdapter<Notification, AdminNotificationViewAdapter.NotificationViewHolder> {
@@ -42,7 +42,7 @@ public class AdminNotificationViewAdapter extends FirebaseRecyclerAdapter<Notifi
         return new NotificationViewHolder(mItemView, this);
     }
 
-    class NotificationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener {
+    class NotificationViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         TextView title_item_txtView;
         TextView body_item_txtView;
         String noti_id;
@@ -58,21 +58,15 @@ public class AdminNotificationViewAdapter extends FirebaseRecyclerAdapter<Notifi
 
             this.mAdapter = mAdapter;
 
-            itemView.setOnClickListener(this);
             itemView.setOnCreateContextMenuListener(this);
-        }
-
-
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(view.getContext(), AdminEditNotificationActivity.class);
-            intent.putExtra("noti_id", noti_id);
-            view.getContext().startActivity(intent);
         }
 
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
             // Long Press Create Context Menu
+            int pos = getAdapterPosition();
+
+            MenuItem delete = contextMenu.add(Menu.NONE, 1, pos, "Delete");
         }
     }
 }
