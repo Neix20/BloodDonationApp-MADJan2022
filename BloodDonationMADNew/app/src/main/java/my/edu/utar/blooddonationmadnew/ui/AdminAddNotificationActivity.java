@@ -81,7 +81,7 @@ public class AdminAddNotificationActivity extends AppCompatActivity {
 
         // Make Http Post Call Here
         try {
-            httpTask.sendNotification("/topics/admin", title, body);
+            httpTask.sendNotification("/topics/notification", title, body);
         } catch (Exception e) {
             e.printStackTrace();
         }

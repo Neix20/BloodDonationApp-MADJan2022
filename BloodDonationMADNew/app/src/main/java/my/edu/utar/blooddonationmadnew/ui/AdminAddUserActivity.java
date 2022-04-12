@@ -56,12 +56,7 @@ public class AdminAddUserActivity extends AppCompatActivity {
         binding = ActivityAdminAddUserListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
-
-
-
         // Bind Java Objects to XML Element
-
         email_txt = binding.emailTxt;
         password_txt = binding.pwdTxt;
         userType_txt = binding.userTypeTxt;
@@ -77,7 +72,6 @@ public class AdminAddUserActivity extends AppCompatActivity {
         city_txt= binding.cityTxt;
         state_txt= binding.stateTxtView;
         country_txt=binding.countryTxt;
-
 
         //Set Drop down menu debug
         ArrayList<String> stateList = new ArrayList<>(Arrays.asList("Kuala Lumpur", "Selangor", "Johor", "Penang", "Kuantan"));

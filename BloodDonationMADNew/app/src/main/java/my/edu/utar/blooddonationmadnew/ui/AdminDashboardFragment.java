@@ -73,7 +73,7 @@ public class AdminDashboardFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
         // Subscribe to Push notification
-        FirebaseMessaging.getInstance().subscribeToTopic("admin").addOnCompleteListener(new OnCompleteListener<Void>() {
+        FirebaseMessaging.getInstance().subscribeToTopic("notification").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(!task.isSuccessful()){
@@ -81,7 +81,7 @@ public class AdminDashboardFragment extends Fragment {
                     return;
                 }
 
-                Log.i(TAG, "Successfully subscribed to Topic Admin!");
+                Log.i(TAG, "Successfully subscribed to Topic Notification!");
             }
         });
 

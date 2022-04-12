@@ -1,5 +1,7 @@
 package my.edu.utar.blooddonationmadnew.data;
 
+import android.text.TextUtils;
+
 import java.util.Objects;
 
 public class User {
@@ -181,5 +183,11 @@ public class User {
 
     public void setState_bloodType(String state_bloodType) {
         this.state_bloodType = state_bloodType;
+    }
+
+    public String getAddress() {
+        String[] address_arr = {this.addr1, this.addr2, this.postCode, this.city, this.state, this.country};
+        String address = TextUtils.join(" ", address_arr);
+        return address;
     }
 }
