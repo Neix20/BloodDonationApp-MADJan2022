@@ -42,7 +42,6 @@
                 android:id="@+id/id_txtView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Title"
                 android:visibility="gone" />
 
             <TextView

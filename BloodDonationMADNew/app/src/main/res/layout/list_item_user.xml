@@ -18,8 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="4dp">
-
-
+        
         <TextView
             android:id="@+id/icon_item_txt"
             android:layout_width="63dp"
@@ -36,32 +35,38 @@
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintVertical_bias="0.384" />
 
-        <EditText
-            android:id="@+id/phoneNo_edit_txtView"
+        <TextView
+            android:id="@+id/id_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/phoneNo_txt"
             android:layout_width="wrap_content"
             android:layout_height="19dp"
             android:layout_marginStart="8dp"
             android:ems="4"
-            android:text="type"
             android:textSize="14dp"
             card_view:layout_constraintBottom_toBottomOf="@+id/phoneNo_txtView"
             card_view:layout_constraintStart_toEndOf="@+id/phoneNo_txtView"
             card_view:layout_constraintTop_toTopOf="@+id/phoneNo_txtView" />
 
-        <EditText
-            android:id="@+id/bloodType_edit_txtView"
+        <TextView
+            android:id="@+id/bloodType_txt"
             android:layout_width="wrap_content"
             android:layout_height="19dp"
             android:layout_marginStart="8dp"
             android:ems="2"
-            android:text="blood_type"
             android:textSize="14dp"
             card_view:layout_constraintBottom_toBottomOf="@+id/blood_type_txtView"
             card_view:layout_constraintStart_toEndOf="@+id/blood_type_txtView"
             card_view:layout_constraintTop_toTopOf="@+id/blood_type_txtView" />
 
         <TextView
-            android:id="@+id/name_txtView"
+            android:id="@+id/name_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -82,9 +87,9 @@
             android:text="Phone:"
             android:textColor="@color/black"
             android:textSize="14dp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/bloodType_edit_txtView"
-            card_view:layout_constraintStart_toEndOf="@+id/bloodType_edit_txtView"
-            card_view:layout_constraintTop_toTopOf="@+id/bloodType_edit_txtView" />
+            card_view:layout_constraintBottom_toBottomOf="@+id/bloodType_txt"
+            card_view:layout_constraintStart_toEndOf="@+id/bloodType_txt"
+            card_view:layout_constraintTop_toTopOf="@+id/bloodType_txt" />
 
         <TextView
             android:id="@+id/blood_type_txtView"

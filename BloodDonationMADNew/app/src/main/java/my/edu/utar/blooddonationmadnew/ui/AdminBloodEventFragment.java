@@ -61,16 +61,13 @@ public class AdminBloodEventFragment extends Fragment {
         // Initialize Database Reference
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
 
-        FirebaseRecyclerOptions<BloodEvent> options = new FirebaseRecyclerOptions.Builder<BloodEvent>().setQuery(dbRef, BloodEvent.class).build();
+        FirebaseRecyclerOptions<BloodEvent> options = new FirebaseRecyclerOptions.Builder<BloodEvent>().setQuery(dbRef.orderByChild("title"), BloodEvent.class).build();
         adminBloodEventViewAdapter = new AdminBloodEventViewAdapter(options);
 
         mRecyclerView.setAdapter(adminBloodEventViewAdapter);
 
         // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
-//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL);
-//        mRecyclerView.addItemDecoration(dividerItemDecoration);
 
         fab.setOnClickListener(view -> nAddBloodEvent());
 

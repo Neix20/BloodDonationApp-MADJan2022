@@ -89,11 +89,11 @@
                     android:paddingRight="10dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/phone_number_txt"
+                        android:id="@+id/age_txt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Phone Number"
-                        android:inputType="phone" />
+                        android:hint="Age"
+                        android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -113,12 +113,36 @@
                     android:paddingRight="10dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/age_txt"
+                        android:id="@+id/phone_number_txt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Age"
-                        android:inputType="number" />
+                        android:hint="Phone Number"
+                        android:inputType="phone" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/blood_type_txt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Blood Type"
+                        android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -154,22 +178,7 @@
                         android:hint="Weight" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
-                    android:paddingRight="10dp">
 
-                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                        android:id="@+id/blood_type_txt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="BT"
-                        android:inputType="none" />
-                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout

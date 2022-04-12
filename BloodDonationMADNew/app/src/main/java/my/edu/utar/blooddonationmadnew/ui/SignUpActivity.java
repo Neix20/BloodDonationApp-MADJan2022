@@ -133,10 +133,10 @@ public class SignUpActivity extends AppCompatActivity {
                     int _age = (age.isEmpty()) ? 0 : Integer.valueOf(age);
                     user.setAge(_age);
 
-                    int _height = (height.isEmpty()) ? 0 : Integer.valueOf(height);
+                    int _height = (height.isEmpty()) ? 0 : (int) Math.round(Double.valueOf(height));
                     user.setHeight(_height);
 
-                    int _weight = (weight.isEmpty()) ? 0 : Integer.valueOf(weight);
+                    int _weight = (weight.isEmpty()) ? 0 : (int) Math.round(Double.valueOf(weight));
                     user.setWeight(_weight);
 
                     // Default User Type is User

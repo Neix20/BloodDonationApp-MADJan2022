@@ -59,6 +59,7 @@ dependencies {
 
     // Google Map
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
 
     // OkHTTP
     implementation 'com.squareup.okhttp3:okhttp:4.9.2'
@@ -75,8 +76,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-gcm:16.1.0'
 
     implementation 'com.google.guava:guava:27.0.1-android'
-
-    implementation 'com.google.android.gms:play-services-location:16.0.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

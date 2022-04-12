@@ -15,16 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import my.edu.utar.blooddonationmadnew.R;
 
 import my.edu.utar.blooddonationmadnew.data.User;
-import my.edu.utar.blooddonationmadnew.ui.AdminCheckUserProfileActivity;
+import my.edu.utar.blooddonationmadnew.ui.AdminEditUserActivity;
 
 public class AdminUserViewAdapter extends FirebaseRecyclerAdapter<User, AdminUserViewAdapter.UserViewHolder> {
 
@@ -40,23 +37,28 @@ public class AdminUserViewAdapter extends FirebaseRecyclerAdapter<User, AdminUse
 
     @Override
     protected void onBindViewHolder(@NonNull UserViewHolder holder, int position, @NonNull User model) {
-        holder.name_txtView.setText(model.getName());
-        holder.bloodType_TxtView.setText(model.getBloodType());
-        holder.phoneNo_TxtView.setText(model.getPhoneNumber());
+        Log.e(TAG, Character.toUpperCase(model.getName().charAt(0)) + "");
+        holder.id_txt.setText(model.getId());
+        holder.name_txt.setText(model.getName());
+        holder.bloodType_txt.setText(model.getBloodType());
+        holder.phoneNo_txt.setText(model.getPhoneNumber());
     }
 
 
     @NonNull
     @Override
     public AdminUserViewAdapter.UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_user_list_item, parent, false);
+        View mItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_user, parent, false);
         return new AdminUserViewAdapter.UserViewHolder(mItemView, this);
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener{
-        TextView name_txtView;
-        TextView bloodType_TxtView;
-        TextView phoneNo_TxtView;
+
+        TextView icon_item_txt;
+        TextView id_txt;
+        TextView name_txt;
+        TextView bloodType_txt;
+        TextView phoneNo_txt;
 
         AdminUserViewAdapter mAdapter;
 
@@ -64,9 +66,11 @@ public class AdminUserViewAdapter extends FirebaseRecyclerAdapter<User, AdminUse
             super(itemView);
 
             // Bind Java Object to XML Element
-            name_txtView = itemView.findViewById(R.id.name_txtView);
-            bloodType_TxtView = itemView.findViewById(R.id.bloodType_edit_txtView);
-            phoneNo_TxtView=itemView.findViewById(R.id.phoneNo_edit_txtView);
+            icon_item_txt = itemView.findViewById(R.id.icon_item_txt);
+            id_txt = itemView.findViewById(R.id.id_txt);
+            name_txt = itemView.findViewById(R.id.name_txt);
+            bloodType_txt = itemView.findViewById(R.id.bloodType_txt);
+            phoneNo_txt=itemView.findViewById(R.id.phoneNo_txt);
 
             this.mAdapter = mAdapter;
 
@@ -78,33 +82,12 @@ public class AdminUserViewAdapter extends FirebaseRecyclerAdapter<User, AdminUse
         @Override
         public void onClick(View view) {
             // Get the position of the item that was clicked.
-            int pos = getLayoutPosition();
+            String id = id_txt.getText().toString().trim();
 
             // Edit Item
-            dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    int ind = 0;
-
-                    for(DataSnapshot userSnapshot : snapshot.getChildren()){
-                        if(ind == pos){
-                            //Todo
-                            User tmpUser = userSnapshot.getValue(User.class);
-                            Intent intent = new Intent(view.getContext(), AdminCheckUserProfileActivity.class);
-                            intent.putExtra("id", tmpUser.getId());
-                            view.getContext().startActivity(intent);
-                        }
-                        ind++;
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Log.e(TAG, "The read failed: " + error.getCode());
-                }
-            });
-
-
+            Intent intent = new Intent(view.getContext(), AdminEditUserActivity.class);
+            intent.putExtra("id", id);
+            view.getContext().startActivity(intent);
         }
 
         @Override

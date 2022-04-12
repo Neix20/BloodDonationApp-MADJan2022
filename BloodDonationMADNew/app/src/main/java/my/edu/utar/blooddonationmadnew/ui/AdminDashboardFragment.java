@@ -64,7 +64,7 @@ public class AdminDashboardFragment extends Fragment {
         // Initialize Database Reference
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
 
-        FirebaseRecyclerOptions<Notification> options = new FirebaseRecyclerOptions.Builder<Notification>().setQuery(dbRef, Notification.class).build();
+        FirebaseRecyclerOptions<Notification> options = new FirebaseRecyclerOptions.Builder<Notification>().setQuery(dbRef.orderByChild("title"), Notification.class).build();
         adminNotificationViewAdapter = new AdminNotificationViewAdapter(options);
 
         mRecyclerView.setAdapter(adminNotificationViewAdapter);
