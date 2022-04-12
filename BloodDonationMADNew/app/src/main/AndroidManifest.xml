@@ -20,7 +20,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".ui.UserMainActivity"
+            android:name=".ui.AdminMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +31,7 @@
 
         <activity android:name=".ui.SignUpActivity" android:exported="false" />
 
-        <activity android:name=".ui.AdminMainActivity" android:exported="false" />
+       <!-- <activity android:name=".ui.AdminMainActivity" android:exported="false" />-->
         <!--<activity android:name=".ui.UserMainActivity" android:exported="false" />-->
 
         <activity android:name=".ui.AdminAddNotificationActivity" android:exported="false" />
