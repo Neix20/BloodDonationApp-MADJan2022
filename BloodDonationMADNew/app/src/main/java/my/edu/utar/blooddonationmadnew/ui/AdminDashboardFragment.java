@@ -21,7 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-import my.edu.utar.blooddonationmadnew.adapter.NotificationViewAdapter;
+import my.edu.utar.blooddonationmadnew.adapter.AdminNotificationViewAdapter;
 
 import my.edu.utar.blooddonationmadnew.data.Notification;
 import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminDashboardBinding;
@@ -38,7 +38,7 @@ public class AdminDashboardFragment extends Fragment {
     private final String TABLE_NAME = "Notification";
 
     private RecyclerView mRecyclerView;
-    private NotificationViewAdapter notificationViewAdapter;
+    private AdminNotificationViewAdapter adminNotificationViewAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,9 +53,9 @@ public class AdminDashboardFragment extends Fragment {
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
 
         FirebaseRecyclerOptions<Notification> options = new FirebaseRecyclerOptions.Builder<Notification>().setQuery(dbRef, Notification.class).build();
-        notificationViewAdapter = new NotificationViewAdapter(options);
+        adminNotificationViewAdapter = new AdminNotificationViewAdapter(options);
 
-        mRecyclerView.setAdapter(notificationViewAdapter);
+        mRecyclerView.setAdapter(adminNotificationViewAdapter);
 
         // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -68,6 +68,7 @@ public class AdminDashboardFragment extends Fragment {
                     Log.e(TAG, "Task has failed!");
                     return;
                 }
+
                 Log.i(TAG, "Successfully subscribed to Topic Admin!");
             }
         });
@@ -85,13 +86,13 @@ public class AdminDashboardFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        notificationViewAdapter.startListening();
+        adminNotificationViewAdapter.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        notificationViewAdapter.stopListening();
+        adminNotificationViewAdapter.stopListening();
     }
 
 }

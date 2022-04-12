@@ -1,16 +1,36 @@
 package my.edu.utar.blooddonationmadnew.ui;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import my.edu.utar.blooddonationmadnew.R;
+import my.edu.utar.blooddonationmadnew.data.BloodEvent;
 import my.edu.utar.blooddonationmadnew.data.Notification;
 import my.edu.utar.blooddonationmadnew.databinding.ActivityAdminAddNotificationBinding;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class AdminAddNotificationActivity extends AppCompatActivity {
     public final String TAG = AdminAddNotificationActivity.class.getSimpleName();
@@ -18,12 +38,12 @@ public class AdminAddNotificationActivity extends AppCompatActivity {
     private EditText title_txt;
     private EditText body_txt;
 
-    private Button submit_btn;
-
     private ActivityAdminAddNotificationBinding binding;
 
     private DatabaseReference dbRef;
     private final String TABLE_NAME = "Notification";
+
+    private HttpTask httpTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +56,7 @@ public class AdminAddNotificationActivity extends AppCompatActivity {
         title_txt = binding.titleTxt;
         body_txt = binding.bodyTxt;
 
-        submit_btn = binding.submitBtn;
+        httpTask = new HttpTask();
 
         // Initialize Java Objects
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
@@ -45,11 +65,9 @@ public class AdminAddNotificationActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
-        submit_btn.setOnClickListener(v -> submitBtn());
     }
 
-    public void submitBtn(){
+    public void addNotification(){
         String title = title_txt.getText().toString();
         String body = body_txt.getText().toString();
 
@@ -61,6 +79,13 @@ public class AdminAddNotificationActivity extends AppCompatActivity {
 
         dbRef.setValue(notification);
 
+        // Make Http Post Call Here
+        try {
+            httpTask.sendNotification("/topics/admin", title, body);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         finish();
     }
 
@@ -68,5 +93,61 @@ public class AdminAddNotificationActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         finish();
         return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_add, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.option_save) {
+            addNotification();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private class HttpTask {
+        private final OkHttpClient httpClient;
+
+        public HttpTask() {
+            httpClient = new OkHttpClient();
+        }
+
+        public void sendNotification(String topic, String title, String body) throws Exception {
+
+            // form parameters
+            String json = String.format("{\"to\":\"%s\",\"notification\":{\"title\":\"%s\",\"body\":\"%s\"}}", topic, title, body);
+
+            RequestBody formBody = RequestBody.create(json, MediaType.parse("application/json"));
+
+            Request request = new Request.Builder()
+                    .url("https://httpbin.org/post")
+                    .addHeader("Authorization", "key=AAAAzpUTlAY:APA91bElinNPX2qpwOh7Afo7gj4nfIbp3kHbZVOTDpsExDH0SPC240K2M9cHaliZ1Ggt1psfUKXsdpgHMqUGimB8BBwyqg3aUF6N-uY7vNTJt4dew7o8yHfM9uMJEbrzhpSxy4Bv3iUX")
+                    .addHeader("Content-Type", "application/json")
+                    .addHeader("User-Agent", "OkHttp Bot")
+                    .post(formBody)
+                    .build();
+
+            Call call = httpClient.newCall(request);
+
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                    Log.e(TAG, e.toString().trim());
+                }
+
+                @Override
+                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+                    // Get response body
+                    Log.i(TAG, "Successfully publish notification to Topic Admin!");
+                }
+            });
+        }
     }
 }

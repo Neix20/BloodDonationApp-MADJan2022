@@ -18,13 +18,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import my.edu.utar.blooddonationmadnew.R;
 import my.edu.utar.blooddonationmadnew.ui.AdminEditNotificationActivity;
 import my.edu.utar.blooddonationmadnew.data.Notification;
-import my.edu.utar.blooddonationmadnew.sample.TestEditActivity;
 
-public class NotificationViewAdapter extends FirebaseRecyclerAdapter<Notification, NotificationViewAdapter.NotificationViewHolder> {
+public class AdminNotificationViewAdapter extends FirebaseRecyclerAdapter<Notification, AdminNotificationViewAdapter.NotificationViewHolder> {
     private final String TABLE_NAME = "Notification";
     private DatabaseReference dbRef;
 
-    public NotificationViewAdapter(@NonNull FirebaseRecyclerOptions<Notification> options) {
+    public AdminNotificationViewAdapter(@NonNull FirebaseRecyclerOptions<Notification> options) {
         super(options);
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
     }
@@ -48,9 +47,9 @@ public class NotificationViewAdapter extends FirebaseRecyclerAdapter<Notificatio
         TextView body_item_txtView;
         String noti_id;
 
-        NotificationViewAdapter mAdapter;
+        AdminNotificationViewAdapter mAdapter;
 
-        public NotificationViewHolder(@NonNull View itemView, NotificationViewAdapter mAdapter) {
+        public NotificationViewHolder(@NonNull View itemView, AdminNotificationViewAdapter mAdapter) {
             super(itemView);
 
             // Bind Java Object to XML Element
