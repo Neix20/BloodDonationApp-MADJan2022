@@ -112,10 +112,10 @@ public class AdminAddUserActivity extends AppCompatActivity {
         int age = (_age.isEmpty()) ? 0 : Integer.parseInt(_age);
 
         String _height = height_txt.getText().toString();
-        int height = (_height.isEmpty()) ? 0 : (int) Math.round(Double.valueOf(_height));
+        int height = (_height.isEmpty()) ? 0 : Integer.valueOf(_height);
 
         String _weight = weight_txt.getText().toString();
-        int weight = (_weight.isEmpty()) ? 0 : (int) Math.round(Double.valueOf(_weight));
+        int weight = (_weight.isEmpty()) ? 0 : Integer.valueOf(_weight);
 
         String bloodType = bloodType_txt.getText().toString();
         String phoneNumber = phoneNumber_txt.getText().toString();

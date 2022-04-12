@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -46,23 +45,23 @@ public class AdminEditUserActivity extends AppCompatActivity {
     private String id;
     private String gTitle;
 
-    private EditText email_txt;
-    private EditText password_txt;
+    private TextInputEditText email_txt;
+    private TextInputEditText password_txt;
     private MaterialAutoCompleteTextView userType_txt;
 
-    private EditText name_txt;
-    private EditText age_txt;
-    private EditText height_txt;
-    private EditText weight_txt;
+    private TextInputEditText name_txt;
+    private TextInputEditText age_txt;
+    private TextInputEditText height_txt;
+    private TextInputEditText weight_txt;
     private MaterialAutoCompleteTextView bloodType_txt;
-    private EditText phoneNumber_txt;
+    private TextInputEditText phoneNumber_txt;
 
-    private EditText addr1_txt;
-    private EditText addr2_txt;
-    private EditText postCode_txt;
-    private EditText city_txt;
+    private TextInputEditText addr1_txt;
+    private TextInputEditText addr2_txt;
+    private TextInputEditText postCode_txt;
+    private TextInputEditText city_txt;
     private MaterialAutoCompleteTextView state_txt;
-    private EditText country_txt;
+    private TextInputEditText country_txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,11 +129,11 @@ public class AdminEditUserActivity extends AppCompatActivity {
                 String age = (_age==0) ? "0" : String.valueOf(_age);
                 age_txt.setText(age);
 
-                double _height = tmpUser.getHeight();
+                int _height = tmpUser.getHeight();
                 String height = (_height==0) ? "0" : String.valueOf(_height);
                 height_txt.setText(height);
 
-                double _weight =  tmpUser.getWeight();
+                int _weight =  tmpUser.getWeight();
                 String weight = (_weight==0) ? "0" : String.valueOf(_weight);
                 weight_txt.setText(weight);
 
@@ -166,10 +165,10 @@ public class AdminEditUserActivity extends AppCompatActivity {
         int age = (_age.isEmpty()) ? 0 : Integer.parseInt(_age);
 
         String _height = height_txt.getText().toString();
-        int height = (_height.isEmpty()) ? 0 : (int) Math.round(Double.valueOf(_height));
+        int height = (_height.isEmpty()) ? 0 : Integer.valueOf(_height);
 
         String _weight = weight_txt.getText().toString();
-        int weight = (_weight.isEmpty()) ? 0 : (int) Math.round(Double.valueOf(_weight));
+        int weight = (_weight.isEmpty()) ? 0 : Integer.valueOf(_weight);
 
         String bloodType = bloodType_txt.getText().toString();
         String phoneNumber = phoneNumber_txt.getText().toString();

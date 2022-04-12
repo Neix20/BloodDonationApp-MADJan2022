@@ -20,6 +20,7 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import my.edu.utar.blooddonationmadnew.R;
 import my.edu.utar.blooddonationmadnew.databinding.FragmentUserUserListBinding;
 
 public class UserUserListFragment extends Fragment {
@@ -27,8 +28,8 @@ public class UserUserListFragment extends Fragment {
 
     private FragmentUserUserListBinding binding;
 
-    private AutoCompleteTextView state_auto_complete;
-    private AutoCompleteTextView blood_type_auto_complete;
+    private AutoCompleteTextView state_txt;
+    private AutoCompleteTextView bloodType_txt;
 
 
     private Button submit_btn;
@@ -38,21 +39,20 @@ public class UserUserListFragment extends Fragment {
         View root = binding.getRoot();
 
         // Bind Java Objects to XML Element
-        state_auto_complete = binding.stateAutoComplete;
-        blood_type_auto_complete = binding.bloodTypeAutoComplete;
+        state_txt = binding.stateAutoComplete;
+        bloodType_txt = binding.bloodTypeAutoComplete;
 
         submit_btn = binding.submitBtn;
 
         // Choices
         // Should Import from String Values
-        ArrayList<String> stateList = new ArrayList<>(Arrays.asList("Kuala Lumpur", "Selangor", "Johor", "Penang", "Kuantan"));
-        ArrayList<String> bloodTypeList = new ArrayList<>(Arrays.asList("A", "B", "O", "AB"));
+        String[] state_arr = getResources().getStringArray(R.array.state_arr);
+        ArrayAdapter<String> stateAdapter= new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1, state_arr);
+        state_txt.setAdapter(stateAdapter);
 
-        ArrayAdapter<String> stateAdapter= new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1, stateList);
-        ArrayAdapter<String> bloodTypeAdapter = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1, bloodTypeList);
-
-        state_auto_complete.setAdapter(stateAdapter);
-        blood_type_auto_complete.setAdapter(bloodTypeAdapter);
+        String[] blood_type_arr = getResources().getStringArray(R.array.blood_type_arr);
+        ArrayAdapter<String> bloodTypeAdapter = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1, blood_type_arr);
+        bloodType_txt.setAdapter(bloodTypeAdapter);
 
         submit_btn.setOnClickListener(v -> submitBtn());
 
@@ -60,10 +60,8 @@ public class UserUserListFragment extends Fragment {
     }
 
     public void submitBtn(){
-        String state = state_auto_complete.getText().toString().trim();
-        String blood_type = blood_type_auto_complete.getText().toString().trim();
-
-        Toast.makeText(this.getContext(), state + " " + blood_type, Toast.LENGTH_SHORT).show();
+        String state = state_txt.getText().toString().trim();
+        String blood_type = bloodType_txt.getText().toString().trim();
 
         // Fire base logic
         Intent intent = new Intent(this.getContext(), UserSearchResultActivity.class);

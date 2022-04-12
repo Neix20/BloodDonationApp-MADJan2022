@@ -101,7 +101,7 @@ public class AdminBloodEventFragment extends Fragment {
     public boolean onContextItemSelected(MenuItem item) {
         int pos = item.getOrder();
 
-        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        dbRef.orderByChild("title").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int ind = 0;

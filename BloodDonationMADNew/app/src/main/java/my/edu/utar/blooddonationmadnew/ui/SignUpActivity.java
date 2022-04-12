@@ -87,6 +87,11 @@ public class SignUpActivity extends AppCompatActivity {
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
 
         signup_btn.setOnClickListener(v -> signUp());
+
+        // Add Back Button at ActionBar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     private void signUp() {
@@ -133,10 +138,10 @@ public class SignUpActivity extends AppCompatActivity {
                     int _age = (age.isEmpty()) ? 0 : Integer.valueOf(age);
                     user.setAge(_age);
 
-                    int _height = (height.isEmpty()) ? 0 : (int) Math.round(Double.valueOf(height));
+                    int _height = (height.isEmpty()) ? 0 : Integer.valueOf(height);
                     user.setHeight(_height);
 
-                    int _weight = (weight.isEmpty()) ? 0 : (int) Math.round(Double.valueOf(weight));
+                    int _weight = (weight.isEmpty()) ? 0 : Integer.valueOf(weight);
                     user.setWeight(_weight);
 
                     // Default User Type is User
@@ -152,6 +157,12 @@ public class SignUpActivity extends AppCompatActivity {
                     startActivity(intent);
                 })
                 .addOnFailureListener(e -> Toast.makeText(this, "Authentication Failed: " + e.getMessage(), Toast.LENGTH_LONG).show());
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 
 }

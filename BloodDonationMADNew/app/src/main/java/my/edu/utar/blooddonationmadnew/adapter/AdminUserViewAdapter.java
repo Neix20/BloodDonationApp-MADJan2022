@@ -37,7 +37,7 @@ public class AdminUserViewAdapter extends FirebaseRecyclerAdapter<User, AdminUse
 
     @Override
     protected void onBindViewHolder(@NonNull UserViewHolder holder, int position, @NonNull User model) {
-        Log.e(TAG, Character.toUpperCase(model.getName().charAt(0)) + "");
+        holder.icon_item_txt.setText(Character.toUpperCase(model.getName().charAt(0)) + "");
         holder.id_txt.setText(model.getId());
         holder.name_txt.setText(model.getName());
         holder.bloodType_txt.setText(model.getBloodType());
