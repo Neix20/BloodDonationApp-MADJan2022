@@ -157,6 +157,7 @@ public class AdminProfileFragment extends Fragment {
 
     private void logoutUser(){
         FirebaseAuth.getInstance().signOut();
+        getActivity().finish();
     }
 
     public void updateUser() {

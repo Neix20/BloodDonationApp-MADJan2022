@@ -1,43 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".ui.UserUserListFragment">
+    tools:context=".ui.AdminAddBloodDonorRecordActivity">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/state_txt"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:hint="State">
-        android:layout_weight="1">
+        android:layout_marginEnd="20dp">
 
-        <AutoCompleteTextView
-            android:id="@+id/state_auto_complete"
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/venue_txt"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="Venue" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/blood_type_txt"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Blood Type">
-        android:layout_weight="1">
+        android:layout_marginEnd="20dp">
 
-        <AutoCompleteTextView
-            android:id="@+id/blood_type_auto_complete"
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/user_txt"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="User" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

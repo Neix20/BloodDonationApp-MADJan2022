@@ -38,7 +38,7 @@ public class AdminNotificationViewAdapter extends FirebaseRecyclerAdapter<Notifi
     @NonNull
     @Override
     public NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.notification_list_item, parent, false);
+        View mItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_notification, parent, false);
         return new NotificationViewHolder(mItemView, this);
     }
 

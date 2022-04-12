@@ -330,7 +330,10 @@
                     android:layout_height="60dp"
                     android:layout_weight = "1"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_save_24" />
+                    android:src="@drawable/ic_baseline_save_24"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"/>
 
                 <ImageView
                     android:id="@+id/logout_btn"
@@ -338,7 +341,10 @@
                     android:layout_height="60dp"
                     android:layout_weight = "1"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_logout_24" />
+                    android:src="@drawable/ic_baseline_logout_24"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"/>
             </LinearLayout>
 
         </LinearLayout>

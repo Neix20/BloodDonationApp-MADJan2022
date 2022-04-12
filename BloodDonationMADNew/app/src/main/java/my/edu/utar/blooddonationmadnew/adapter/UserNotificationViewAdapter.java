@@ -1,9 +1,6 @@
 package my.edu.utar.blooddonationmadnew.adapter;
 
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -38,7 +35,7 @@ public class UserNotificationViewAdapter extends FirebaseRecyclerAdapter<Notific
     @NonNull
     @Override
     public UserNotificationViewAdapter.NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.notification_list_item, parent, false);
+        View mItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_notification, parent, false);
         return new UserNotificationViewAdapter.NotificationViewHolder(mItemView, this);
     }
 

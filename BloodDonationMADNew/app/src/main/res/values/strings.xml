@@ -9,6 +9,8 @@
     <string name="option_save">Save</string>
     <string name="option_delete">Delete</string>
     <string name="option_map">Show Map</string>
+    <string name="option_add_blood_donor">Add Blood Donor</string>
+    <string name="option_blood_donation_history">Blood Donation History</string>
     <string-array name="state_arr">
         <item>Kuala Lumpur</item>
         <item>Labuan</item>

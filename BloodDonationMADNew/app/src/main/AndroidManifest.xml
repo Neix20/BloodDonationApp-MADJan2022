@@ -34,6 +34,8 @@
         <activity android:name=".ui.AdminMainActivity" android:exported="false" />
         <activity android:name=".ui.UserMainActivity" android:exported="false" />
 
+        <activity android:name=".ui.AdminAddBloodDonorRecordActivity" android:exported="false" />
+
         <activity android:name=".ui.AdminAddNotificationActivity" android:exported="false" />
 
         <activity android:name=".ui.AdminAddBloodEventActivity" android:exported="false" />
@@ -46,6 +48,8 @@
         <activity android:name=".ui.UserCheckBloodEventActivity" android:exported="false" />
         <activity android:name=".ui.UserCheckUserProfileActivity" android:exported="false" />
         <activity android:name=".ui.UserSearchResultActivity" android:exported="false" />
+
+        <activity android:name=".ui.UserBloodDonationHistoryActivity" android:exported="false"/>
 
         <service
             android:name=".service.PushNotificationService"
