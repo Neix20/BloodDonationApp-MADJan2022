@@ -26,14 +26,14 @@ import my.edu.utar.blooddonationmadnew.R;
 import my.edu.utar.blooddonationmadnew.data.User;
 import my.edu.utar.blooddonationmadnew.ui.AdminCheckUserProfileActivity;
 
-public class UserViewAdapter extends FirebaseRecyclerAdapter<User, UserViewAdapter.UserViewHolder> {
+public class AdminUserViewAdapter extends FirebaseRecyclerAdapter<User, AdminUserViewAdapter.UserViewHolder> {
 
     private DatabaseReference dbRef;
     private final String TABLE_NAME = "users";
 
     public final static String TAG = AdminBloodEventViewAdapter.class.getSimpleName();
 
-    public UserViewAdapter(@NonNull FirebaseRecyclerOptions<User> options) {
+    public AdminUserViewAdapter(@NonNull FirebaseRecyclerOptions<User> options) {
         super(options);
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
     }
@@ -48,9 +48,9 @@ public class UserViewAdapter extends FirebaseRecyclerAdapter<User, UserViewAdapt
 
     @NonNull
     @Override
-    public UserViewAdapter.UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdminUserViewAdapter.UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View mItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_user_list_item, parent, false);
-        return new UserViewAdapter.UserViewHolder(mItemView, this);
+        return new AdminUserViewAdapter.UserViewHolder(mItemView, this);
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener{
@@ -58,9 +58,9 @@ public class UserViewAdapter extends FirebaseRecyclerAdapter<User, UserViewAdapt
         TextView bloodType_TxtView;
         TextView phoneNo_TxtView;
 
-        UserViewAdapter mAdapter;
+        AdminUserViewAdapter mAdapter;
 
-        public UserViewHolder(@NonNull View itemView, UserViewAdapter mAdapter) {
+        public UserViewHolder(@NonNull View itemView, AdminUserViewAdapter mAdapter) {
             super(itemView);
 
             // Bind Java Object to XML Element

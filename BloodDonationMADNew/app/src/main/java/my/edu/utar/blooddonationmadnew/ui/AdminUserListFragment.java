@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,7 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import my.edu.utar.blooddonationmadnew.adapter.UserViewAdapter;
+import my.edu.utar.blooddonationmadnew.adapter.AdminUserViewAdapter;
 import my.edu.utar.blooddonationmadnew.data.User;
 import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminUserListBinding;
 
@@ -34,7 +33,7 @@ public class AdminUserListFragment extends Fragment {
     private final String TABLE_NAME = "users";
 
     private RecyclerView mRecyclerView;
-    private UserViewAdapter userViewAdapter;
+    private AdminUserViewAdapter adminUserViewAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,9 +48,9 @@ public class AdminUserListFragment extends Fragment {
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
 
         FirebaseRecyclerOptions<User> options = new FirebaseRecyclerOptions.Builder<User>().setQuery(dbRef, User.class).build();
-        userViewAdapter = new UserViewAdapter(options);
+        adminUserViewAdapter = new AdminUserViewAdapter(options);
 
-        mRecyclerView.setAdapter(userViewAdapter);
+        mRecyclerView.setAdapter(adminUserViewAdapter);
 
         // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -73,12 +72,12 @@ public class AdminUserListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        userViewAdapter.startListening();
+        adminUserViewAdapter.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        userViewAdapter.stopListening();
+        adminUserViewAdapter.stopListening();
     }
 }

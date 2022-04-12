@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import my.edu.utar.blooddonationmadnew.R;
 import my.edu.utar.blooddonationmadnew.data.User;
-import my.edu.utar.blooddonationmadnew.databinding.ActivityCheckUserProfileBinding;
+import my.edu.utar.blooddonationmadnew.databinding.ActivityAdminCheckUserProfileBinding;
 
 public class AdminCheckUserProfileActivity extends AppCompatActivity {
 
@@ -28,7 +28,7 @@ public class AdminCheckUserProfileActivity extends AppCompatActivity {
 
     public final static String TAG = AdminCheckUserProfileActivity.class.getSimpleName();
 
-    private ActivityCheckUserProfileBinding binding;
+    private ActivityAdminCheckUserProfileBinding binding;
 
     private String id;
 
@@ -50,7 +50,7 @@ public class AdminCheckUserProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityCheckUserProfileBinding.inflate(getLayoutInflater());
+        binding = ActivityAdminCheckUserProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // Bind Java Objects to XML Element
