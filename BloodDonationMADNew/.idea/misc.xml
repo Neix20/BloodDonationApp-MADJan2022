@@ -46,11 +46,14 @@
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/menu/menu_add.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/menu/menu_admin_bottom_nav.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/menu/menu_bottom_nav.xml" value="0.25416666666666665" />
+<<<<<<< Updated upstream
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/menu/menu_edit.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/menu/menu_update.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/menu/menu_update_be.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/menu/menu_update_user_be.xml" value="0.25416666666666665" />
         <entry key="..\:/Github/BloodDonationApp-MADJan2022/BloodDonationMADNew/app/src/main/res/menu/menu_user_bottom_nav.xml" value="0.25416666666666665" />
+=======
+>>>>>>> Stashed changes
       </map>
     </option>
   </component>

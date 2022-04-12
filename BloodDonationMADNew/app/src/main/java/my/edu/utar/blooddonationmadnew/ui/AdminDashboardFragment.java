@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import my.edu.utar.blooddonationmadnew.adapter.NotificationViewAdapter;
+
 import my.edu.utar.blooddonationmadnew.data.Notification;
 import my.edu.utar.blooddonationmadnew.databinding.FragmentAdminDashboardBinding;
 
@@ -55,8 +56,7 @@ public class AdminDashboardFragment extends Fragment {
         // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL);
-//        mRecyclerView.addItemDecoration(dividerItemDecoration);
+        // Subscribe to Push notification
 
         fab.setOnClickListener(v -> nAddNotification());
 
