@@ -160,12 +160,14 @@ public class AdminMapFragment extends Fragment {
                             String title = title_list.get(i);
                             double distance = distance_list.get(i);
 
+                            distance /= 1000;
+
                             if(marker.getTitle().equals(title)){
                                 new AlertDialog.Builder(getContext())
                                         .setMessage("Do you want to call an ambulance?")
                                         .setCancelable(false)
                                         .setPositiveButton("Yes", (dialog, ik) -> {
-                                            Toast.makeText(getContext(), "Successfully Called an ambulance to your location!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getContext(), String.format("Successfully Called an ambulance from %s to your location!", title), Toast.LENGTH_SHORT).show();
                                         })
                                         .setNegativeButton("No", (dialog, ik) -> dialog.cancel())
                                         .show();

@@ -70,8 +70,8 @@ public class AdminProfileFragment extends Fragment {
         // Bind Java Objects to XML Element
         email_txt = binding.emailTxt;
         password_txt = binding.pwdTxt;
-        userType_txt = binding.userTypeTxt;
         name_txt = binding.nameTxt;
+//        userType_txt = binding.userTypeTxt;
 //        age_txt = binding.ageTxt;
 //        height_txt = binding.heightTxt;
 //        weight_txt = binding.weightTxt;
@@ -97,9 +97,9 @@ public class AdminProfileFragment extends Fragment {
 //        ArrayAdapter<String> bloodTypeAdapter = new ArrayAdapter<>(this.getContext(), R.layout.dropdownmenu_listitem, blood_type_arr);
 //        bloodType_txt.setAdapter(bloodTypeAdapter);
 
-        String[] user_type_arr = getResources().getStringArray(R.array.user_type_arr);
-        ArrayAdapter<String> userTypeAdapter = new ArrayAdapter<>(this.getContext(), R.layout.dropdownmenu_listitem, user_type_arr);
-        userType_txt.setAdapter(userTypeAdapter);
+//        String[] user_type_arr = getResources().getStringArray(R.array.user_type_arr);
+//        ArrayAdapter<String> userTypeAdapter = new ArrayAdapter<>(this.getContext(), R.layout.dropdownmenu_listitem, user_type_arr);
+//        userType_txt.setAdapter(userTypeAdapter);
 
         // Initialize Java Objects
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
@@ -162,14 +162,14 @@ public class AdminProfileFragment extends Fragment {
     public void updateUser() {
         String email = email_txt.getText().toString();
         String pwd = password_txt.getText().toString();
-        String userType = userType_txt.getText().toString();
+        // String userType = userType_txt.getText().toString();
         String name = name_txt.getText().toString();
 
         User tmpUser = new User();
         tmpUser.setId(id);
         tmpUser.setEmail(email);
         tmpUser.setPassword(pwd);
-        tmpUser.setUserType(userType);
+        // tmpUser.setUserType(userType);
         tmpUser.setName(name);
 
 //        String _age = age_txt.getText().toString();
@@ -198,6 +198,8 @@ public class AdminProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User fbUser = snapshot.getValue(User.class);
+
+                tmpUser.setUserType(fbUser.getUserType());
 
                 tmpUser.setAge(fbUser.getAge());
                 tmpUser.setHeight(fbUser.getHeight());

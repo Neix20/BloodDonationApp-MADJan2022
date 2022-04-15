@@ -120,9 +120,10 @@ public class AdminEditBloodEventActivity  extends AppCompatActivity implements O
     }
 
     public void showRoute(){
-         Intent intent = new Intent(this, AdminMapResultActivity.class);
+         Intent intent = new Intent(this, MapResultActivity.class);
          intent.putExtra("longitude", longitude);
          intent.putExtra("latitude", latitude);
+         intent.putExtra("title", gTitle);
          startActivity(intent);
     }
 

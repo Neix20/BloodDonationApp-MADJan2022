@@ -4,15 +4,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -30,23 +27,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-
 import my.edu.utar.blooddonationmadnew.R;
 import my.edu.utar.blooddonationmadnew.data.BloodEvent;
-import my.edu.utar.blooddonationmadnew.databinding.ActivityAdminEditBloodEventBinding;
 import my.edu.utar.blooddonationmadnew.databinding.ActivityUserCheckBloodEventBinding;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class UserCheckBloodEventActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -118,9 +101,10 @@ public class UserCheckBloodEventActivity extends AppCompatActivity implements On
     }
 
     public void showRoute() {
-        Intent intent = new Intent(this, AdminMapResultActivity.class);
+        Intent intent = new Intent(this, MapResultActivity.class);
         intent.putExtra("longitude", longitude);
         intent.putExtra("latitude", latitude);
+        intent.putExtra("title", gTitle);
         startActivity(intent);
     }
 

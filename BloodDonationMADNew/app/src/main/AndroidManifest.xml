@@ -40,7 +40,7 @@
 
         <activity android:name=".ui.AdminAddBloodEventActivity" android:exported="false" />
         <activity android:name=".ui.AdminEditBloodEventActivity" android:exported="false" />
-        <activity android:name=".ui.AdminMapResultActivity" android:exported="false" />
+        <activity android:name=".ui.MapResultActivity" android:exported="false" />
 
         <activity android:name=".ui.AdminAddUserActivity" android:exported="false" />
         <activity android:name=".ui.AdminEditUserActivity" android:exported="false" />

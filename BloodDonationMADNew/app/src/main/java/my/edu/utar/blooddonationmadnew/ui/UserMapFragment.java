@@ -166,7 +166,7 @@ public class UserMapFragment extends Fragment {
                                         .setMessage("Do you want to call an ambulance?")
                                         .setCancelable(false)
                                         .setPositiveButton("Yes", (dialog, ik) -> {
-                                            Toast.makeText(getContext(), "Successfully Called an ambulance to your location!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getContext(), String.format("Successfully Called an ambulance from %s to your location!", title), Toast.LENGTH_SHORT).show();
                                         })
                                         .setNegativeButton("No", (dialog, ik) -> dialog.cancel())
                                         .show();

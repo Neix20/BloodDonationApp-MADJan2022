@@ -1,20 +1,17 @@
 package my.edu.utar.blooddonationmadnew.ui;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -35,9 +32,9 @@ import my.edu.utar.blooddonationmadnew.R;
 import my.edu.utar.blooddonationmadnew.databinding.ActivityMapRouteBinding;
 import my.edu.utar.blooddonationmadnew.util.Util;
 
-public class AdminMapResultActivity extends AppCompatActivity{
+public class MapResultActivity extends AppCompatActivity{
 
-    public final static String TAG = AdminMapResultActivity.class.getSimpleName();
+    public final static String TAG = MapResultActivity.class.getSimpleName();
 
     private final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
@@ -49,6 +46,8 @@ public class AdminMapResultActivity extends AppCompatActivity{
 
     private double be_lng;
     private double be_lat;
+
+    private String gTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +61,7 @@ public class AdminMapResultActivity extends AppCompatActivity{
         Intent mIntent = getIntent();
         be_lng = mIntent.getDoubleExtra("longitude", 0);
         be_lat = mIntent.getDoubleExtra("latitude", 0);
+        gTitle = mIntent.getStringExtra("title");
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -96,18 +96,18 @@ public class AdminMapResultActivity extends AppCompatActivity{
                                     mMap.addMarker(new MarkerOptions()
                                             .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("person", 100, 100)))
                                             .position(latLng)
-                                            .title("Depot")
+                                            .title("Your Location")
                                     );
 
                                     // Add Medical Center marker
                                     LatLng be_latLng = new LatLng(be_lat, be_lng);
 
-                                    double distance = Util.distance(latLng.latitude, latLng.longitude, be_lat, be_lng);
+                                    double distance = Util.distance(latLng.latitude, latLng.longitude, be_lat, be_lng) / 1000;
 
                                     mMap.addMarker(new MarkerOptions()
                                             .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("medical_center",100,100)))
                                             .position(be_latLng)
-                                            .title("Destination"));
+                                            .title(gTitle));
 
                                     // Add Route
                                     PolylineOptions lineOptions = new PolylineOptions();
@@ -123,8 +123,17 @@ public class AdminMapResultActivity extends AppCompatActivity{
                                     mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                         @Override
                                         public boolean onMarkerClick(@NonNull Marker marker) {
-                                            if(marker.getTitle().equals("Destination"))
+                                            if(marker.getTitle().equals("Destination")) {
+                                                new AlertDialog.Builder(getApplicationContext())
+                                                        .setMessage("Do you want to call an ambulance?")
+                                                        .setCancelable(false)
+                                                        .setPositiveButton("Yes", (dialog, ik) -> {
+                                                            Toast.makeText(getApplicationContext(), String.format("Successfully Called an ambulance from %s to your location!", gTitle), Toast.LENGTH_SHORT).show();
+                                                        })
+                                                        .setNegativeButton("No", (dialog, ik) -> dialog.cancel())
+                                                        .show();
                                                 Toast.makeText(getApplicationContext(), String.format("Distance: %skm", Util.formatNumber((int) distance, ",")), Toast.LENGTH_SHORT).show();
+                                            }
                                             return false;
                                         }
                                     });
