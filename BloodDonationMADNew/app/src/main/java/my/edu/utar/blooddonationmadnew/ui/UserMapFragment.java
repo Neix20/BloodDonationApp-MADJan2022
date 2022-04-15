@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
@@ -161,6 +162,14 @@ public class UserMapFragment extends Fragment {
                             distance /= 1000;
 
                             if(marker.getTitle().equals(title)){
+                                new AlertDialog.Builder(getContext())
+                                        .setMessage("Do you want to call an ambulance?")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Yes", (dialog, ik) -> {
+                                            Toast.makeText(getContext(), "Successfully Called an ambulance to your location!", Toast.LENGTH_SHORT).show();
+                                        })
+                                        .setNegativeButton("No", (dialog, ik) -> dialog.cancel())
+                                        .show();
                                 Toast.makeText(getActivity().getApplicationContext(), String.format("Distance: %skm", Util.formatNumber((int) distance, ",")), Toast.LENGTH_SHORT).show();
                             }
                         }
