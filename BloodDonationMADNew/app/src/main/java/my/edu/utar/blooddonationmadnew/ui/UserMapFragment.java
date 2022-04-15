@@ -161,6 +161,8 @@ public class UserMapFragment extends Fragment {
                             String title = title_list.get(i);
                             double distance = distance_list.get(i);
 
+                            distance /= 1000;
+
                             if(marker.getTitle().equals(title)){
                                 Toast.makeText(getActivity().getApplicationContext(), String.format("Distance: %skm", Util.formatNumber((int) distance, ",")), Toast.LENGTH_SHORT).show();
                             }
