@@ -21,7 +21,9 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"/>
 
     </RelativeLayout>
 
