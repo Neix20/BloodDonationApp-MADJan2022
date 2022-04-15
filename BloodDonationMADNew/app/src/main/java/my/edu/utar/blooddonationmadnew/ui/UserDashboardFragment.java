@@ -132,7 +132,7 @@ public class UserDashboardFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
 
-                String req_msg = String.format("User: %s\nAddress: %s\nBlood Type: %s\n", user.getName(), user.getAddress(), user.getBloodType());
+                String req_msg = String.format("User: %s\nAddress: %s\nPhone Number: %s\nBlood Type: %s\n", user.getName(), user.getAddress(), user.getPhoneNumber(), user.getBloodType());
 
                 new AlertDialog.Builder(getContext())
                         .setMessage(String.format("%s\nAre you sure you want to make Blood Request?", req_msg))

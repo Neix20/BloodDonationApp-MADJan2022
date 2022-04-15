@@ -9,6 +9,7 @@
                 android:id="@+id/option_more"
                 android:icon="@drawable/ic_baseline_bloodtype_24"
                 android:title="@string/option_add_blood_donor"
+                app:iconTint="@color/black"
                 app:showAsAction="never"/>
         </menu>
     </item>

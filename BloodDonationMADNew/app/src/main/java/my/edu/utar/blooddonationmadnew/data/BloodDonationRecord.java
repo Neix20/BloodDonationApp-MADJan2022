@@ -14,20 +14,20 @@ public class BloodDonationRecord {
 
     private String user_id_venue;
 
-    private DateTime dateTime;
+    private String dateTime;
 
 
-    public BloodDonationRecord(String id, String venue_id, String venue_title, String user_id, String user_name) {
+    public BloodDonationRecord(String id, String venue_id, String venue_title, String user_id, String user_name, String dateTime) {
         this.id = id;
         this.venue_id = venue_id;
         this.venue_title = venue_title;
         this.user_id = user_id;
         this.user_name = user_name;
-        this.dateTime = new DateTime();
+        this.dateTime = dateTime;
     }
 
     public BloodDonationRecord() {
-        this("", "", "", "", "");
+        this("", "", "", "", "", "");
     }
 
     public String getId() { return id; }
@@ -68,9 +68,13 @@ public class BloodDonationRecord {
         this.user_name = user_name;
     }
 
-    public DateTime getDateTime() { return dateTime; }
+    public String getDateTime() {
+        return dateTime;
+    }
 
-    public void setDateTime(DateTime dateTime) { this.dateTime = dateTime; }
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
 
     public String getUser_id_venue() {
         return user_id_venue;

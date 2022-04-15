@@ -71,32 +71,31 @@ public class AdminProfileFragment extends Fragment {
         email_txt = binding.emailTxt;
         password_txt = binding.pwdTxt;
         userType_txt = binding.userTypeTxt;
-
         name_txt = binding.nameTxt;
-        age_txt = binding.ageTxt;
-        height_txt = binding.heightTxt;
-        weight_txt = binding.weightTxt;
-        bloodType_txt = binding.bloodTypeTxt;
-        phoneNumber_txt = binding.phoneNumberTxt;
-
-        addr1_txt = binding.addr1Txt;
-        addr2_txt = binding.addr2Txt;
-        postCode_txt = binding.postCodeTxt;
-        city_txt = binding.cityTxt;
-        state_txt = binding.stateTxt;
-        country_txt = binding.countryTxt;
+//        age_txt = binding.ageTxt;
+//        height_txt = binding.heightTxt;
+//        weight_txt = binding.weightTxt;
+//        bloodType_txt = binding.bloodTypeTxt;
+//        phoneNumber_txt = binding.phoneNumberTxt;
+//
+//        addr1_txt = binding.addr1Txt;
+//        addr2_txt = binding.addr2Txt;
+//        postCode_txt = binding.postCodeTxt;
+//        city_txt = binding.cityTxt;
+//        state_txt = binding.stateTxt;
+//        country_txt = binding.countryTxt;
 
         save_btn = binding.saveBtn;
         logout_btn = binding.logoutBtn;
 
         //Set Drop down menu debug
-        String[] state_arr = getResources().getStringArray(R.array.state_arr);
-        ArrayAdapter<String> stateAdapter= new ArrayAdapter<>(this.getContext(), R.layout.dropdownmenu_listitem, state_arr);
-        state_txt.setAdapter(stateAdapter);
-
-        String[] blood_type_arr = getResources().getStringArray(R.array.blood_type_arr);
-        ArrayAdapter<String> bloodTypeAdapter = new ArrayAdapter<>(this.getContext(), R.layout.dropdownmenu_listitem, blood_type_arr);
-        bloodType_txt.setAdapter(bloodTypeAdapter);
+//        String[] state_arr = getResources().getStringArray(R.array.state_arr);
+//        ArrayAdapter<String> stateAdapter= new ArrayAdapter<>(this.getContext(), R.layout.dropdownmenu_listitem, state_arr);
+//        state_txt.setAdapter(stateAdapter);
+//
+//        String[] blood_type_arr = getResources().getStringArray(R.array.blood_type_arr);
+//        ArrayAdapter<String> bloodTypeAdapter = new ArrayAdapter<>(this.getContext(), R.layout.dropdownmenu_listitem, blood_type_arr);
+//        bloodType_txt.setAdapter(bloodTypeAdapter);
 
         String[] user_type_arr = getResources().getStringArray(R.array.user_type_arr);
         ArrayAdapter<String> userTypeAdapter = new ArrayAdapter<>(this.getContext(), R.layout.dropdownmenu_listitem, user_type_arr);
@@ -120,27 +119,27 @@ public class AdminProfileFragment extends Fragment {
 
                 name_txt.setText(tmpUser.getName());
 
-                int _age = tmpUser.getAge();
-                String age = (_age==0) ? "0" : String.valueOf(_age);
-                age_txt.setText(age);
-
-                int _height = tmpUser.getHeight();
-                String height = (_height==0) ? "0" : String.valueOf(_height);
-                height_txt.setText(height);
-
-                int _weight =  tmpUser.getWeight();
-                String weight = (_weight==0) ? "0" : String.valueOf(_weight);
-                weight_txt.setText(weight);
-
-                bloodType_txt.setText(tmpUser.getBloodType());
-                phoneNumber_txt.setText(tmpUser.getPhoneNumber());
-
-                addr1_txt.setText(tmpUser.getAddr1());
-                addr2_txt.setText(tmpUser.getAddr2());
-                postCode_txt.setText(tmpUser.getPostCode());
-                city_txt.setText(tmpUser.getCity());
-                state_txt.setText(tmpUser.getState());
-                country_txt.setText(tmpUser.getCountry());
+//                int _age = tmpUser.getAge();
+//                String age = (_age==0) ? "0" : String.valueOf(_age);
+//                age_txt.setText(age);
+//
+//                int _height = tmpUser.getHeight();
+//                String height = (_height==0) ? "0" : String.valueOf(_height);
+//                height_txt.setText(height);
+//
+//                int _weight =  tmpUser.getWeight();
+//                String weight = (_weight==0) ? "0" : String.valueOf(_weight);
+//                weight_txt.setText(weight);
+//
+//                bloodType_txt.setText(tmpUser.getBloodType());
+//                phoneNumber_txt.setText(tmpUser.getPhoneNumber());
+//
+//                addr1_txt.setText(tmpUser.getAddr1());
+//                addr2_txt.setText(tmpUser.getAddr2());
+//                postCode_txt.setText(tmpUser.getPostCode());
+//                city_txt.setText(tmpUser.getCity());
+//                state_txt.setText(tmpUser.getState());
+//                country_txt.setText(tmpUser.getCountry());
             }
 
             @Override
@@ -166,29 +165,65 @@ public class AdminProfileFragment extends Fragment {
         String userType = userType_txt.getText().toString();
         String name = name_txt.getText().toString();
 
-        String _age = age_txt.getText().toString();
-        int age = (_age.isEmpty()) ? 0 : Integer.parseInt(_age);
+        User tmpUser = new User();
+        tmpUser.setId(id);
+        tmpUser.setEmail(email);
+        tmpUser.setPassword(pwd);
+        tmpUser.setUserType(userType);
+        tmpUser.setName(name);
 
-        String _height = height_txt.getText().toString();
-        int height = (_height.isEmpty()) ? 0 : Integer.valueOf(_height);
+//        String _age = age_txt.getText().toString();
+//        int age = (_age.isEmpty()) ? 0 : Integer.parseInt(_age);
+//
+//        String _height = height_txt.getText().toString();
+//        int height = (_height.isEmpty()) ? 0 : Integer.valueOf(_height);
+//
+//        String _weight = weight_txt.getText().toString();
+//        int weight = (_weight.isEmpty()) ? 0 : Integer.valueOf(_weight);
+//
+//        String bloodType = bloodType_txt.getText().toString();
+//        String phoneNumber = phoneNumber_txt.getText().toString();
+//
+//        String addr1 = addr1_txt.getText().toString();
+//        String addr2 = addr2_txt.getText().toString();
+//        String postCode = postCode_txt.getText().toString();
+//        String city = city_txt.getText().toString();
+//        String state = state_txt.getText().toString();
+//        String country = country_txt.getText().toString();
+//
+//        User tmpUser = new User(id, email,pwd, userType,name,age,height,weight,bloodType,phoneNumber,addr1,addr2,postCode,city,state,country);
+//        tmpUser.setState_bloodType(String.format("%s_%s", state, bloodType));
 
-        String _weight = weight_txt.getText().toString();
-        int weight = (_weight.isEmpty()) ? 0 : Integer.valueOf(_weight);
+        dbRef.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User fbUser = snapshot.getValue(User.class);
 
-        String bloodType = bloodType_txt.getText().toString();
-        String phoneNumber = phoneNumber_txt.getText().toString();
+                tmpUser.setAge(fbUser.getAge());
+                tmpUser.setHeight(fbUser.getHeight());
+                tmpUser.setWeight(fbUser.getWeight());
 
-        String addr1 = addr1_txt.getText().toString();
-        String addr2 = addr2_txt.getText().toString();
-        String postCode = postCode_txt.getText().toString();
-        String city = city_txt.getText().toString();
-        String state = state_txt.getText().toString();
-        String country = country_txt.getText().toString();
+                tmpUser.setBloodType(fbUser.getBloodType());
+                tmpUser.setPhoneNumber(fbUser.getPhoneNumber());
 
-        User tmpUser = new User(id, email,pwd, userType,name,age,height,weight,bloodType,phoneNumber,addr1,addr2,postCode,city,state,country);
-        tmpUser.setState_bloodType(String.format("%s_%s", state, bloodType));
+                tmpUser.setAddr1(fbUser.getAddr1());
+                tmpUser.setAddr2(fbUser.getAddr2());
+                tmpUser.setPostCode(fbUser.getPostCode());
+                tmpUser.setCity(fbUser.getCity());
+                tmpUser.setState(fbUser.getState());
+                tmpUser.setCountry(fbUser.getCountry());
 
-        dbRef.child(id).setValue(tmpUser);
+                tmpUser.setState_bloodType(fbUser.getState_bloodType());
+
+                // Update User
+                dbRef.child(id).setValue(tmpUser);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e(TAG, "The read failed: " + error.getCode());
+            }
+        });
 
         Toast.makeText(this.getContext(), String.format("User %s was successfully updated!", email), Toast.LENGTH_SHORT).show();
     }

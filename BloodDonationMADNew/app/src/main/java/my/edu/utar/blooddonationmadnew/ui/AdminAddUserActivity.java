@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -49,6 +50,7 @@ public class AdminAddUserActivity extends AppCompatActivity {
     private MaterialAutoCompleteTextView state_txt;
     private EditText country_txt;
 
+    private FirebaseAuth mAuth;
     private DatabaseReference dbRef;
     private final String TABLE_NAME = "users";
 
@@ -97,6 +99,7 @@ public class AdminAddUserActivity extends AppCompatActivity {
         }
 
         // Initialize Java Objects
+        mAuth = FirebaseAuth.getInstance();
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
 
     }
@@ -120,7 +123,6 @@ public class AdminAddUserActivity extends AppCompatActivity {
         String bloodType = bloodType_txt.getText().toString();
         String phoneNumber = phoneNumber_txt.getText().toString();
 
-
         String addr1 = addr1_txt.getText().toString();
         String addr2 = addr2_txt.getText().toString();
         String postCode = postCode_txt.getText().toString();
@@ -128,16 +130,15 @@ public class AdminAddUserActivity extends AppCompatActivity {
         String state = state_txt.getText().toString();
         String country = country_txt.getText().toString();
 
-        User user = new User("", email,pwd, userType,name,age,height,weight,bloodType,phoneNumber,addr1,addr2,postCode,city,state,country);
-        user.setState_bloodType(String.format("%s_%s", state, bloodType));
+        mAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(res -> {
+            String id = mAuth.getCurrentUser().getUid();
+            User user = new User(id, email,pwd, userType,name,age,height,weight,bloodType,phoneNumber,addr1,addr2,postCode,city,state,country);
+            user.setState_bloodType(String.format("%s_%s", state, bloodType));
 
-        // Add to Firebase
-        dbRef = dbRef.push();
-
-        String id = dbRef.getKey();
-        user.setId(id);
-
-        dbRef.setValue(user);
+            // Add To Firebase
+            dbRef = dbRef.child(id);
+            dbRef.setValue(user);
+        });
 
         Toast.makeText(this, String.format("User %s was successfully inserted!", name), Toast.LENGTH_SHORT).show();
 

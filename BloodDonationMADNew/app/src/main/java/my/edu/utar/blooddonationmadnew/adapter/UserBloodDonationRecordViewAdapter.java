@@ -12,6 +12,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 
 import my.edu.utar.blooddonationmadnew.R;
 import my.edu.utar.blooddonationmadnew.data.BloodDonationRecord;
@@ -27,10 +28,12 @@ public class UserBloodDonationRecordViewAdapter extends FirebaseRecyclerAdapter<
     protected void onBindViewHolder(@NonNull BloodDonationRecordViewHolder holder, int position, @NonNull BloodDonationRecord model) {
         holder.venue_txt.setText(model.getVenue_title());
 
-        DateTime dt = model.getDateTime();
+        String dateTime_str = model.getDateTime();
 
-        holder.date_txt.setText(String.format("Date: %s", Util.getDate(dt)));
-        holder.time_txt.setText(String.format("Time: %s", Util.getTime(dt)));
+        DateTime dateTime = Util.parseString(dateTime_str);
+
+        holder.date_txt.setText(String.format("Date: %s", Util.getDate(dateTime)));
+        holder.time_txt.setText(String.format("Time: %s", Util.getTime(dateTime)));
     }
 
     @NonNull

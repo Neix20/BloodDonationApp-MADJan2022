@@ -19,9 +19,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TimeZone;
 
 import my.edu.utar.blooddonationmadnew.R;
 import my.edu.utar.blooddonationmadnew.data.BloodDonationRecord;
@@ -100,7 +107,7 @@ public class AdminAddBloodDonorRecordActivity extends AppCompatActivity {
                         }
 
                         // Set Array Adapter
-                        ArrayAdapter<String> bloodEventAdapter= new ArrayAdapter<String>(getApplicationContext(), R.layout.dropdownmenu_listitem, beNameList);
+                        ArrayAdapter<String> bloodEventAdapter= new ArrayAdapter<>(getApplicationContext(), R.layout.dropdownmenu_listitem, beNameList);
                         ArrayAdapter<String> userAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.dropdownmenu_listitem, userNameList);
 
                         venue_txt.setAdapter(bloodEventAdapter);
@@ -138,7 +145,14 @@ public class AdminAddBloodDonorRecordActivity extends AppCompatActivity {
         bdrRef = bdrRef.push();
 
         String id = bdrRef.getKey();
-        BloodDonationRecord bloodDonationRecord = new BloodDonationRecord(id, blood_event_id, blood_event, user_id, user);
+
+        Calendar calendar = Calendar.getInstance();
+        TimeZone tz = calendar.getTimeZone();
+        DateTimeZone jodaTz = DateTimeZone.forID(tz.getID());
+        DateTime dateTime = new DateTime(calendar.getTimeInMillis(), jodaTz);
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss");
+
+        BloodDonationRecord bloodDonationRecord = new BloodDonationRecord(id, blood_event_id, blood_event, user_id, user, formatter.print(dateTime));
         bloodDonationRecord.setUser_id_venue(String.format("%s_%s", user_id, blood_event));
 
         bdrRef.setValue(bloodDonationRecord);

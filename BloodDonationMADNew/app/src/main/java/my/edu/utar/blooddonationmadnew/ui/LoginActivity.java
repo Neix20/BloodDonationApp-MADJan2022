@@ -78,7 +78,11 @@ public class LoginActivity extends AppCompatActivity {
                             User tmpUser = snapshot.getValue(User.class);
                             String userType = tmpUser.getUserType();
 
+                            email_txt.setText("");
+                            pwd_txt.setText("");
+
                             if(userType.equals("Admin")){
+
                                 Intent intent = new Intent(getApplicationContext(), AdminMainActivity.class);
                                 startActivity(intent);
                             } else {

@@ -15,7 +15,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:hint="State">
-        android:layout_weight="1">
 
         <AutoCompleteTextView
             android:id="@+id/state_auto_complete"
@@ -32,7 +31,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:hint="Blood Type">
-        android:layout_weight="1">
 
         <AutoCompleteTextView
             android:id="@+id/blood_type_auto_complete"
