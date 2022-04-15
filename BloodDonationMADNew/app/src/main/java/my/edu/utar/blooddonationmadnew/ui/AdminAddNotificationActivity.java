@@ -72,12 +72,11 @@ public class AdminAddNotificationActivity extends AppCompatActivity {
         String body = body_txt.getText().toString();
 
         // Add New Notification
-        dbRef = dbRef.push();
 
-        String id = dbRef.getKey();
+        String id = dbRef.push().getKey();
         Notification notification = new Notification(id, title, body);
 
-        dbRef.setValue(notification);
+        dbRef.child(id).setValue(notification);
 
         // Make Http Post Call Here
         try {

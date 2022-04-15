@@ -142,9 +142,7 @@ public class AdminAddBloodDonorRecordActivity extends AppCompatActivity {
         String blood_event_id = bloodEventMap.get(blood_event);
         String user_id = userMap.get(user);
 
-        bdrRef = bdrRef.push();
-
-        String id = bdrRef.getKey();
+        String id = bdrRef.push().getKey();
 
         Calendar calendar = Calendar.getInstance();
         TimeZone tz = calendar.getTimeZone();
@@ -155,7 +153,7 @@ public class AdminAddBloodDonorRecordActivity extends AppCompatActivity {
         BloodDonationRecord bloodDonationRecord = new BloodDonationRecord(id, blood_event_id, blood_event, user_id, user, formatter.print(dateTime));
         bloodDonationRecord.setUser_id_venue(String.format("%s_%s", user_id, blood_event));
 
-        bdrRef.setValue(bloodDonationRecord);
+        bdrRef.child(id).setValue(bloodDonationRecord);
 
         Toast.makeText(this, String.format("Blood Donation Record of User %s was successfully inserted!", user), Toast.LENGTH_SHORT).show();
 

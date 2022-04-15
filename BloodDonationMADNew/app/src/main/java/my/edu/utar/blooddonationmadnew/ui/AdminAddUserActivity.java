@@ -136,8 +136,7 @@ public class AdminAddUserActivity extends AppCompatActivity {
             user.setState_bloodType(String.format("%s_%s", state, bloodType));
 
             // Add To Firebase
-            dbRef = dbRef.child(id);
-            dbRef.setValue(user);
+            dbRef.child(id).setValue(user);
         });
 
         Toast.makeText(this, String.format("User %s was successfully inserted!", name), Toast.LENGTH_SHORT).show();

@@ -204,12 +204,11 @@ public class AdminAddBloodEventActivity extends AppCompatActivity {
                             bloodEvent.setLatitude(latitude);
 
                             // Add to Firebase
-                            dbRef = dbRef.push();
 
-                            String id = dbRef.getKey();
+                            String id = dbRef.push().getKey();
                             bloodEvent.setId(id);
 
-                            dbRef.setValue(bloodEvent);
+                            dbRef.child(id).setValue(bloodEvent);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

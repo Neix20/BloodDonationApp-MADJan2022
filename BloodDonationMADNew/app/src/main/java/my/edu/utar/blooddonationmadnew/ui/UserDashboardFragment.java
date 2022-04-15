@@ -139,10 +139,9 @@ public class UserDashboardFragment extends Fragment {
                         .setCancelable(false)
                         .setPositiveButton("Yes", (dialog, ik) -> {
                             try {
-                                dbRef = dbRef.push();
-                                String id = dbRef.getKey();
+                                String id =  dbRef.push().getKey();
                                 Notification notification = new Notification(id,"New Blood Request", req_msg);
-                                dbRef.setValue(notification);
+                                dbRef.child(id).setValue(notification);
 
                                 httpTask.sendNotification("/topics/notification", "New Blood Request", req_msg);
                                 Toast.makeText(getContext(), String.format("Successfully Created Blood Request for User %s!", user.getName()), Toast.LENGTH_SHORT).show();
