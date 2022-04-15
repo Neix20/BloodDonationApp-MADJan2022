@@ -123,15 +123,7 @@ public class MapResultActivity extends AppCompatActivity{
                                     mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                         @Override
                                         public boolean onMarkerClick(@NonNull Marker marker) {
-                                            if(marker.getTitle().equals("Destination")) {
-                                                new AlertDialog.Builder(getApplicationContext())
-                                                        .setMessage("Do you want to call an ambulance?")
-                                                        .setCancelable(false)
-                                                        .setPositiveButton("Yes", (dialog, ik) -> {
-                                                            Toast.makeText(getApplicationContext(), String.format("Successfully Called an ambulance from %s to your location!", gTitle), Toast.LENGTH_SHORT).show();
-                                                        })
-                                                        .setNegativeButton("No", (dialog, ik) -> dialog.cancel())
-                                                        .show();
+                                            if(marker.getTitle().equals(gTitle)) {
                                                 Toast.makeText(getApplicationContext(), String.format("Distance: %skm", Util.formatNumber((int) distance, ",")), Toast.LENGTH_SHORT).show();
                                             }
                                             return false;

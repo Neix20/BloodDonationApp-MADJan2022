@@ -115,10 +115,8 @@ public class AdminProfileFragment extends Fragment {
 
                 email_txt.setText(tmpUser.getEmail());
                 password_txt.setText(tmpUser.getPassword());
-                userType_txt.setText(tmpUser.getUserType());
-
                 name_txt.setText(tmpUser.getName());
-
+//                userType_txt.setText(tmpUser.getUserType());
 //                int _age = tmpUser.getAge();
 //                String age = (_age==0) ? "0" : String.valueOf(_age);
 //                age_txt.setText(age);
