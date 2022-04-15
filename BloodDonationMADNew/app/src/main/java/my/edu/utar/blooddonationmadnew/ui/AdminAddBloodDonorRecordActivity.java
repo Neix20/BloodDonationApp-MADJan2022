@@ -139,6 +139,7 @@ public class AdminAddBloodDonorRecordActivity extends AppCompatActivity {
 
         String id = bdrRef.getKey();
         BloodDonationRecord bloodDonationRecord = new BloodDonationRecord(id, blood_event_id, blood_event, user_id, user);
+        bloodDonationRecord.setUser_id_venue(String.format("%s_%s", user_id, blood_event));
 
         bdrRef.setValue(bloodDonationRecord);
 

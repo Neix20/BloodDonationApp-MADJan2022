@@ -14,9 +14,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import my.edu.utar.blooddonationmadnew.adapter.AdminBloodEventViewAdapter;
 import my.edu.utar.blooddonationmadnew.adapter.UserBloodDonationRecordViewAdapter;
 import my.edu.utar.blooddonationmadnew.adapter.UserUserViewAdapter;
 import my.edu.utar.blooddonationmadnew.data.BloodDonationRecord;
+import my.edu.utar.blooddonationmadnew.data.BloodEvent;
 import my.edu.utar.blooddonationmadnew.data.User;
 import my.edu.utar.blooddonationmadnew.databinding.ActivityUserBloodDonationHistoryBinding;
 
@@ -32,6 +34,8 @@ public class UserBloodDonationHistoryActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private UserBloodDonationRecordViewAdapter userBloodDonationRecordViewAdapter;
 
+    private SearchView searchBar;
+
     private FirebaseUser cur_user;
     private String id;
 
@@ -44,6 +48,7 @@ public class UserBloodDonationHistoryActivity extends AppCompatActivity {
 
         // Bind Java Objects to XML Element
         mRecyclerView = binding.bdrRecView;
+        searchBar = binding.searchBar;
 
         // Initialize Database Reference
         dbRef = FirebaseDatabase.getInstance().getReference(TABLE_NAME);
@@ -59,6 +64,23 @@ public class UserBloodDonationHistoryActivity extends AppCompatActivity {
 
         // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String searchText) {
+                Query firebaseSearchQuery = dbRef.orderByChild("user_id_venue").startAt(String.format("%s_%s", id, searchText)).endAt(String.format("%s_%s", id, searchText) + "\uf8ff");
+                FirebaseRecyclerOptions<BloodDonationRecord> options = new FirebaseRecyclerOptions.Builder<BloodDonationRecord>().setQuery(firebaseSearchQuery, BloodDonationRecord.class).build();
+                userBloodDonationRecordViewAdapter = new UserBloodDonationRecordViewAdapter(options);
+                userBloodDonationRecordViewAdapter.startListening();
+                mRecyclerView.setAdapter(userBloodDonationRecordViewAdapter);
+                return false;
+            }
+        });
 
         // Add Back Button at ActionBar
         if (getSupportActionBar() != null) {

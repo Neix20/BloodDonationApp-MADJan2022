@@ -1,5 +1,9 @@
 package my.edu.utar.blooddonationmadnew.data;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 public class BloodDonationRecord {
 
     private String id;
@@ -8,21 +12,25 @@ public class BloodDonationRecord {
     private String user_id;
     private String user_name;
 
+    private String user_id_venue;
+
+    private DateTime dateTime;
+
+
     public BloodDonationRecord(String id, String venue_id, String venue_title, String user_id, String user_name) {
         this.id = id;
         this.venue_id = venue_id;
         this.venue_title = venue_title;
         this.user_id = user_id;
         this.user_name = user_name;
+        this.dateTime = new DateTime();
     }
 
-    public BloodDonationRecord(){
+    public BloodDonationRecord() {
         this("", "", "", "", "");
     }
 
-    public String getId() {
-        return id;
-    }
+    public String getId() { return id; }
 
     public void setId(String id) {
         this.id = id;
@@ -58,5 +66,17 @@ public class BloodDonationRecord {
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
+    }
+
+    public DateTime getDateTime() { return dateTime; }
+
+    public void setDateTime(DateTime dateTime) { this.dateTime = dateTime; }
+
+    public String getUser_id_venue() {
+        return user_id_venue;
+    }
+
+    public void setUser_id_venue(String user_id_venue) {
+        this.user_id_venue = user_id_venue;
     }
 }
